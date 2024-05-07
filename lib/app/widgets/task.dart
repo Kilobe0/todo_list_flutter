@@ -9,33 +9,30 @@ class Task extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 500,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
-        child: Slidable(
-          endActionPane: ActionPane(
-            motion: const BehindMotion(),
-            extentRatio: 0.20,
-            children: [
-              SlidableAction(
-                onPressed: (context) {
-                  // TODO: Implement delete functionality here
-                },
-                backgroundColor: Colors.red,
-                foregroundColor: Colors.white,
-                icon: Icons.delete,
-                label: 'Delete',
-              ),
-            ],
-          ),
-          child: Card(
-            margin: EdgeInsets.zero,
-            child: ListTile(
-              title: Text(task.title),
-              subtitle: Text('Descrição: ${task.description}'),
-              trailing: Text(task.date.day.toString()),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: Slidable(
+        endActionPane: ActionPane(
+          motion: const BehindMotion(),
+          extentRatio: 0.20,
+          children: [
+            SlidableAction(
+              onPressed: (context) {
+                // TODO: Implement delete functionality here
+              },
+              backgroundColor: Colors.red,
+              foregroundColor: Colors.white,
+              icon: Icons.delete,
+              label: 'Delete',
             ),
+          ],
+        ),
+        child: Card(
+          margin: const EdgeInsets.only(bottom: 10),
+          child: ListTile(
+            title: Text(task.title),
+            subtitle: Text('Descrição: ${task.description}'),
+            trailing: Text(task.date.day.toString()),
           ),
         ),
       ),

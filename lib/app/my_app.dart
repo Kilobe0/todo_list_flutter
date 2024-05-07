@@ -17,24 +17,27 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
             appBar: header(),
             body: Center(
-              child: TaskList(
-                tasks: [
-                  TaskModel(
-                      title: 'Arrumar o quarto',
-                      description: 'Tudo bonitinho certinho e organizado',
-                      date: DateTime.now(),
-                      isDone: false),
-                  TaskModel(
-                      title: 'Estudar Flutter',
-                      description: 'Estudar Flutter para ficar craque',
-                      date: DateTime.now(),
-                      isDone: false),
-                  TaskModel(
-                      title: 'Estudar Flutter',
-                      description: 'Estudar Flutter para ficar craque',
-                      date: DateTime.now(),
-                      isDone: false),
-                ],
+              child: SizedBox(
+                width: 500,
+                child: TaskList(
+                  tasks: [
+                    TaskModel(
+                        title: 'Arrumar o quarto',
+                        description: 'Tudo bonitinho certinho e organizado',
+                        date: DateTime.now(),
+                        isDone: false),
+                    TaskModel(
+                        title: 'Estudar Flutter',
+                        description: 'Estudar Flutter para ficar craque',
+                        date: DateTime.now(),
+                        isDone: false),
+                    TaskModel(
+                        title: 'Estudar Flutter',
+                        description: 'Estudar Flutter para ficar craque',
+                        date: DateTime.now(),
+                        isDone: false),
+                  ],
+                ),
               ),
             )));
   }
