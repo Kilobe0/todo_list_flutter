@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
             appBar: header(context),
             drawer: const DrawerWidget(),
+            
             body: Center(
               child: SizedBox(
                 width: 500,
