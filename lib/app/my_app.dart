@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list_flutter/app/models/task_model.dart';
 import 'package:todo_list_flutter/app/widgets/header.dart';
+import 'package:todo_list_flutter/app/models/task_model.dart';
 import 'package:todo_list_flutter/app/widgets/task_list.dart';
 
 class MyApp extends StatelessWidget {
@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
             appBar: header(),
             body: Center(
               child: TaskList(
-                // TODO: Trazer a lista de tarefas de task_list.dart
                 tasks: [
                   TaskModel(
                       title: 'Arrumar o quarto',
