@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_flutter/app/widgets/header.dart';
 import 'package:todo_list_flutter/app/models/task_model.dart';
-import 'package:todo_list_flutter/app/widgets/task_list.dart';
+import 'package:todo_list_flutter/app/widgets/taskview/task_list.dart';
 
 import 'widgets/drawer/drawer_widget.dart';
 
@@ -17,9 +17,9 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
         home: Scaffold(
+          
             appBar: header(context),
             drawer: const DrawerWidget(),
-            
             body: Center(
               child: SizedBox(
                 width: 500,
