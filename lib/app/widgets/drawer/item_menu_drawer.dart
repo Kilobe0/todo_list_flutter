@@ -20,7 +20,7 @@ class ItemMenuDrawer extends StatelessWidget {
       borderRadius: BorderRadius.circular(5),
       child: Container(
         width: 230,
-        height: 50,
+        height: 40,
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 50),
         decoration: ShapeDecoration(
@@ -30,10 +30,10 @@ class ItemMenuDrawer extends StatelessWidget {
             ),
             shadows: const [
               BoxShadow(
-                color: Colors.black,
-                spreadRadius: 0.5,
-                blurRadius: 0.5,
-                offset: Offset(1, 2),
+                color: Color.fromARGB(85, 0, 0, 0),
+                spreadRadius: 2,
+                blurRadius: 2,
+                offset: Offset(0, 0),
               )
             ]),
         child: Row(
@@ -52,14 +52,10 @@ class ItemMenuDrawer extends StatelessWidget {
               ),
             ),
             const Gap(20),
-            Container(
-              width: 18,
-              height: 18,
-              child: Icon(
-                icone,
-                color: Colors.white,
-                size: 25,
-              ),
+            Icon(
+              icone,
+              color: Colors.white,
+              size: 25,
             ),
           ],
         ),

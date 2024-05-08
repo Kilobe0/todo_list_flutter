@@ -18,7 +18,8 @@ AppBar header(context) {
               },
               borderRadius: BorderRadius.circular(100),
               child: const CircleAvatar(
-                backgroundImage: AssetImage('../assets/images/profile_pic.jpeg'),
+                backgroundImage:
+                    AssetImage('../assets/images/profile_pic.jpeg'),
               ),
             ),
           ),
@@ -27,7 +28,34 @@ AppBar header(context) {
             style: TextStyle(
                 fontFamily: 'Montserrat', fontWeight: FontWeight.bold),
           ),
-          const Icon(Icons.notifications)
+          InkWell(
+            onTap: () {},
+            splashColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            child: const Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Icon(
+                  Icons.notifications,
+                ),
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  left: 10,
+                  bottom: 15,
+                  child: Text(
+                    '2',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     ),
