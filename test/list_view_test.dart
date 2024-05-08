@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:todo_list_flutter/app/widgets/task.dart';
+import 'package:todo_list_flutter/app/widgets/taskview/task_card.dart';
 import 'package:todo_list_flutter/app/models/task_model.dart';
 
 class TaskList extends StatelessWidget {
@@ -11,9 +11,7 @@ class TaskList extends StatelessWidget {
     return ListView.builder(
       itemCount: tasks.length,
       itemBuilder: (context, index) {
-        return Task(
-          task: tasks[index],
-        );
+        return;
       },
     );
   }

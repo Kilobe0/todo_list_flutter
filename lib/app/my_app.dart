@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_list_flutter/app/widgets/add_task_button.dart';
 import 'package:todo_list_flutter/app/widgets/header.dart';
 import 'package:todo_list_flutter/app/models/task_model.dart';
-import 'package:todo_list_flutter/app/widgets/task_list.dart';
+import 'package:todo_list_flutter/app/widgets/taskview/task_list.dart';
 
 import 'widgets/drawer/drawer_widget.dart';
 

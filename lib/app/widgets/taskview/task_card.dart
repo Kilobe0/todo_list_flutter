@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:todo_list_flutter/app/models/task_model.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class Task extends StatelessWidget {
-  const Task({super.key, required this.task});
+class TaskCard extends StatelessWidget {
+  const TaskCard({super.key, required this.task});
 
   final TaskModel task;
 
@@ -13,7 +13,12 @@ class Task extends StatelessWidget {
       borderRadius: BorderRadius.circular(8),
       child: Slidable(
         endActionPane: ActionPane(
-          motion: const BehindMotion(),
+          motion: const Card(
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(8)),
+              child: BehindMotion(),
+            ),
+          ),
           extentRatio: 0.20,
           children: [
             SlidableAction(
@@ -28,7 +33,6 @@ class Task extends StatelessWidget {
           ],
         ),
         child: Card(
-          margin: const EdgeInsets.only(bottom: 10),
           child: ListTile(
             title: Text(task.title),
             subtitle: Text('Descrição: ${task.description}'),
