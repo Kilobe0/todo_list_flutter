@@ -14,7 +14,13 @@ class NotificationIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopupMenuButton(
       itemBuilder: (context) {
-        return 
+        return List<PopupMenuEntry<int>>.generate(
+          notifications.length,
+          (index) => PopupMenuItem(
+            value: index,
+            child: TaskListTileOnNotifications(task: notifications[index]),
+          ),
+        );
       },
       offset: const Offset(0, 30),
       icon: Stack(
