@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list_flutter/app/controllers/finished_tasks_controller.dart';
+import 'package:todo_list_flutter/app/widgets/header/notification_icon.dart';
 
 AppBar header(context) {
   return AppBar(
@@ -18,7 +20,8 @@ AppBar header(context) {
               },
               borderRadius: BorderRadius.circular(100),
               child: const CircleAvatar(
-                backgroundImage: AssetImage('../assets/images/profile_pic.jpeg'),
+                backgroundImage:
+                    AssetImage('../assets/images/profile_pic.jpeg'),
               ),
             ),
           ),
@@ -27,7 +30,13 @@ AppBar header(context) {
             style: TextStyle(
                 fontFamily: 'Montserrat', fontWeight: FontWeight.bold),
           ),
-          const Icon(Icons.notifications)
+          AnimatedBuilder(
+              animation: FinishedTasksController.instance,
+              builder: (context, child) {
+                return NotificationIcon(
+                  notifications: FinishedTasksController.instance.finishedTasks,
+                );
+              }),
         ],
       ),
     ),
