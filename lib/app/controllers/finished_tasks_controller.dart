@@ -6,14 +6,14 @@ class FinishedTasksController extends ChangeNotifier {
   static FinishedTasksController instance = FinishedTasksController();
   List<TaskModel> finishedTasks = [
     TaskModel(
-      id: 0,
+      id: '0',
       title: 'Tarefa 1',
       description: 'Descricão da tarefa 1',
       date: DateTime.now(),
       isDone: true,
     ),
     TaskModel(
-      id: 1,
+      id: '1',
       title: 'Tarefa 2',
       description: 'Descricão da tarefa 2',
       date: DateTime.now(),

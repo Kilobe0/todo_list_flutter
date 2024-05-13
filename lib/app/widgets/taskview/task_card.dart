@@ -36,7 +36,7 @@ class TaskCard extends StatelessWidget {
           child: ListTile(
             title: Text(task.title),
             subtitle: Text('Descrição: ${task.description}'),
-            trailing: Text(task.date.day.toString()),
+            trailing: Text(task.date!.day.toString()),
           ),
         ),
       ),
