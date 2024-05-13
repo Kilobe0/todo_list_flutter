@@ -23,6 +23,5 @@ class FinishedTasksController extends ChangeNotifier {
   removeFinishedTask(TaskModel task) {
     finishedTasks.remove(task);
     notifyListeners();
-    
   }
 }

@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.6
   flutter_slidable: ^3.1.0
   gap: ^3.0.1
+  shared_preferences: ^2.2.3
+  supabase_flutter: ^2.5.2
 
 dev_dependencies:
   flutter_test:

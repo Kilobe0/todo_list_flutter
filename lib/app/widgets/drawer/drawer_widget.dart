@@ -1,3 +1,4 @@
+import 'package:todo_list_flutter/app/widgets/home_page/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -50,11 +51,12 @@ class DrawerWidget extends StatelessWidget {
             icone: Icons.person,
             texto: 'Perfil',
             cor: Colors.deepPurple,
-            onTap: () {},
+            onTap: () {
+              HomeController.instance.setCurrentDrawer(1);
+            },
           ),
         ],
       ),
     );
   }
 }
-
