@@ -3,6 +3,7 @@ import 'package:todo_list_flutter/app/models/task_model.dart';
 import 'package:todo_list_flutter/app/my_app.dart';
 import 'package:todo_list_flutter/app/my_app_controller.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:todo_list_flutter/app/pages/loading/loading_page.dart';
 import 'package:todo_list_flutter/app/services/supabase_service.dart';
 
 const _supabaseUrl = 'https://djzrnvqmrbhabsakttbc.supabase.co';
@@ -28,5 +29,5 @@ Future<void> main() async {
 
   SupabaseService.instance.updateTask(teste);
 
-  runApp(const MyApp());
+  runApp(const LoadingPage());
 }
