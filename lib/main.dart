@@ -5,14 +5,14 @@ import 'package:todo_list_flutter/app/my_app_controller.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:todo_list_flutter/app/services/supabase_service.dart';
 
-const supabaseUrl = 'https://djzrnvqmrbhabsakttbc.supabase.co';
-const supabaseKey =
+const _supabaseUrl = 'https://djzrnvqmrbhabsakttbc.supabase.co';
+const _supabaseKey =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRqenJudnFtcmJoYWJzYWt0dGJjIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxNTYzNDc4MCwiZXhwIjoyMDMxMjEwNzgwfQ.xvqmYwuB7FTMx0-1C1T-zMaBqT6to-xossURM_-wJw8';
 
 Future<void> main() async {
   await Supabase.initialize(
-    url: supabaseUrl,
-    anonKey: supabaseKey,
+    url: _supabaseUrl,
+    anonKey: _supabaseKey,
   );
 
   await MyAppController.instance.init();

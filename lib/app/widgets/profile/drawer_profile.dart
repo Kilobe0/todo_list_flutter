@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_list_flutter/app/my_app_controller.dart';
-import 'package:todo_list_flutter/app/widgets/home_page/home_controller.dart';
+import 'package:todo_list_flutter/app/pages/home/home_controller.dart';
 
 class DrawerProfile extends StatelessWidget {
   const DrawerProfile({super.key});

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list_flutter/app/widgets/home_page/home_controller.dart';
+import 'package:todo_list_flutter/app/pages/home/home_controller.dart';
 import 'package:todo_list_flutter/app/widgets/profile/drawer_profile.dart';
 
 import '../../models/task_model.dart';
-import '../add_task_button.dart';
-import '../drawer/drawer_widget.dart';
-import '../header/header.dart';
-import '../taskview/task_list.dart';
+import '../../widgets/add_task_button.dart';
+import '../../widgets/drawer/drawer_widget.dart';
+import '../../widgets/header/header.dart';
+import '../../widgets/taskview/task_list.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
