@@ -6,11 +6,13 @@ class UserModel {
   String name;
   String email;
   String password;
+  String? imageBinary;
   UserModel({
     required this.id,
     required this.name,
     required this.email,
     required this.password,
+    this.imageBinary,
   });
 
 
@@ -20,6 +22,7 @@ class UserModel {
       'name': name,
       'email': email,
       'password': password,
+      'imageBinary': imageBinary,
     };
   }
 
@@ -29,6 +32,7 @@ class UserModel {
       name: map['name'] as String,
       email: map['email'] as String,
       password: map['password'] as String,
+      imageBinary: map['imageBinary'] as String?,
     );
   }
 

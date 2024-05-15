@@ -16,7 +16,7 @@ class TaskListTileOnNotifications extends StatelessWidget {
         subtitle: Text('Descrição: ${task.description}'),
         trailing: InkWell(
           onTap: () {
-            FinishedTasksController.instance.removeFinishedTask(task);
+            //FinishedTasksController.instance.removeFinishedTask(task);
           },
           child: const Icon(
             Icons.delete,

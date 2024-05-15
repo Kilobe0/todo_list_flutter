@@ -40,6 +40,8 @@ dependencies:
   shared_preferences: ^2.2.3
   supabase_flutter: ^2.5.2
   lottie: ^3.1.1
+  email_validator: ^2.1.17
+  uuid: ^4.4.0
 
 dev_dependencies:
   flutter_test:
