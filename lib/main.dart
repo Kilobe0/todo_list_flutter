@@ -11,6 +11,9 @@ const _supabaseKey =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRqenJudnFtcmJoYWJzYWt0dGJjIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxNTYzNDc4MCwiZXhwIjoyMDMxMjEwNzgwfQ.xvqmYwuB7FTMx0-1C1T-zMaBqT6to-xossURM_-wJw8';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const LoadingPage());
+  
   await Supabase.initialize(
     url: _supabaseUrl,
     anonKey: _supabaseKey,
@@ -29,5 +32,5 @@ Future<void> main() async {
 
   SupabaseService.instance.updateTask(teste);
 
-  runApp(const LoadingPage());
+  runApp(const MyApp());
 }
