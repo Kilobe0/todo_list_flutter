@@ -1,13 +1,23 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:todo_list_flutter/app/models/task_model.dart';
+import 'package:todo_list_flutter/app/models/user_model.dart';
 
 class SupabaseService {
   static final SupabaseService instance = SupabaseService();
-
   final supabase = Supabase.instance.client;
 
-  Future<List<Map<String, dynamic>>> getTasks() async {
-    final data = await supabase.from('tasks').select();
+
+  Future<void> userRegister(UserModel user) async {
+    await supabase.from('users').insert(user.toMap());
+  }
+
+  Future<UserModel?> getUserByEmail(String email) async {
+    final data = await supabase.from('users').select().eq('email', email);
+    if(data.isEmpty) return null;
+    return UserModel.fromMap(data[0]);
+  }
+  Future<List<Map<String, dynamic>>> getUserTasks(String id) async {
+    final data = await supabase.from('tasks').select().eq('userId', id);
     return data;
   }
 
