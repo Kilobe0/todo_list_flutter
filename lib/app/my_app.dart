@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
               if (settings.name == '/login' || settings.name == '/home') {
                 return MaterialPageRoute(
                   builder: (context) =>
-                      isLoggedIn ? const HomePage() : const LoginPage(),
+                      isLoggedIn ? const HomePage() : LoginPage(),
                 );
               }
               // Adicione outras rotas aqui
