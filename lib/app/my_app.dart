@@ -27,13 +27,13 @@ class MyApp extends StatelessWidget {
               if (settings.name == '/login' || settings.name == '/home') {
                 return MaterialPageRoute(
                   builder: (context) =>
-                      isLoggedIn ? const HomePage() : LoginPage(),
+                      isLoggedIn ? const HomePage() : const LoginPage(),
                 );
               }
               // Adicione outras rotas aqui
               return MaterialPageRoute(builder: (context) => const RegisterPage());
             },
-            initialRoute: '/register',
+            initialRoute: '/login',
           );
         });
   }

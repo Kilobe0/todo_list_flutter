@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:todo_list_flutter/app/widgets/second_text_field.dart';
+import 'package:todo_list_flutter/app/pages/login/login_controller.dart';
+import 'package:todo_list_flutter/app/widgets/main_text_field.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
-
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,36 +26,36 @@ class LoginPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Image.asset('assets/images/logo.png', width: 150),
-                const SizedBox(height: 16.0),
+                const Gap(16.0),
                 const Text(
-                  'Login',
+                  '2Do',
                   style: TextStyle(
                     fontSize: 36,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 24.0),
+                const Gap(24.0),
                 SizedBox(
                   width: 400,
                   height: 70,
-                  child: SecondTextField(
+                  child: MainTextField(
                     label: 'E-mail',
-                    controller: emailController,
+                    controller: LoginController.instance.emailController,
                     isPassword: false,
                   ),
                 ),
-                const SizedBox(height: 16.0),
+                const Gap(16.0),
                 SizedBox(
                   width: 400,
                   height: 70,
-                  child: SecondTextField(
+                  child: MainTextField(
                     label: 'Senha',
-                    controller: passwordController,
+                    controller: LoginController.instance.passwordController,
                     isPassword: true,
                   ),
                 ),
-                const SizedBox(height: 24.0),
+                const Gap(24.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -66,7 +64,8 @@ class LoginPage extends StatelessWidget {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
-                          // Lógica de cadastro
+                          LoginController.instance.clearControllers();
+                          Navigator.pushReplacementNamed(context, '/register');
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF210A3E), // Fundo do botão
@@ -92,7 +91,7 @@ class LoginPage extends StatelessWidget {
                           // Lógica de login
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFA484E3), // Fundo do botão
+                          backgroundColor: const Color(0xFF663AB8), // Fundo do botão
                           padding: const EdgeInsets.symmetric(
                               horizontal: 24.0, vertical: 12.0),
                           shape: RoundedRectangleBorder(

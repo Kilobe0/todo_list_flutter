@@ -1,101 +1,113 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:todo_list_flutter/app/pages/login/login_controller.dart';
+import 'package:todo_list_flutter/app/pages/register/register_controller.dart';
 import 'package:todo_list_flutter/app/widgets/main_text_field.dart';
 
-class RegisterPage extends StatefulWidget {
+class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
-
-  @override
-  State<RegisterPage> createState() => _RegisterPageState();
-}
-
-class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor:
+          const Color.fromARGB(255, 20, 18, 24), // Fundo roxo escuro
       body: Center(
         child: Container(
-          padding: const EdgeInsets.all(32.0),
+          width: 650,
+          height: 650,
           decoration: BoxDecoration(
-            color: Colors.deepPurple[800],
+            color: const Color(0xFF210A3E), // Fundo do container
             borderRadius: BorderRadius.circular(20),
           ),
+          padding: const EdgeInsets.fromLTRB(32, 16, 32, 32),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back, color: Colors.white),
+              Align(
+                alignment: Alignment.topLeft,
+                child: IconButton(
                     onPressed: () {
-                      // Navegar para a tela anterior
-                      Navigator.pop(context);
+                      RegisterController.instance.clearControllers();
+                      Navigator.pushReplacementNamed(context, '/login');
                     },
-                  ),
-                  const Text(
-                    'Cadastre-se',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24.0,
+                    icon: const Icon(Icons.arrow_back)),
+              ),
+              const Gap(16.0),
+              const Text(
+                'Insira seus dados',
+                style: TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              const Gap(48.0),
+              SizedBox(
+                width: 400,
+                height: 70,
+                child: MainTextField(
+                  label: 'Nome',
+                  controller: RegisterController.instance.nameController,
+                  isPassword: false,
+                ),
+              ),
+              const Gap(16.0),
+              SizedBox(
+                width: 400,
+                height: 70,
+                child: MainTextField(
+                  label: 'E-mail',
+                  controller: RegisterController.instance.emailController,
+                  isPassword: false,
+                ),
+              ),
+              const Gap(16.0),
+              SizedBox(
+                width: 400,
+                height: 70,
+                child: MainTextField(
+                  label: 'Senha',
+                  controller: RegisterController.instance.passwordController,
+                  isPassword: true,
+                ),
+              ),
+              const Gap(16.0),
+              SizedBox(
+                width: 400,
+                height: 70,
+                child: MainTextField(
+                  label: 'Confirmar senha',
+                  controller:
+                      RegisterController.instance.confirmPasswordController,
+                  isPassword: true,
+                ),
+              ),
+              const Gap(24.0),
+              Center(
+                child: SizedBox(
+                  width: 150,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // TODO: Lógica de cadastro
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          const Color(0xFF663AB8), // Fundo do botão
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24.0, vertical: 12.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              MainTextField(
-                label: 'Nome',
-                controller: nameController,
-                icon: Icons.person,
-                isPassword: false,
-              ),
-              const SizedBox(height: 16.0),
-              MainTextField(
-                label: 'E-mail',
-                controller: emailController,
-                icon: Icons.email,
-                isPassword: false,
-              ),
-              const SizedBox(height: 16.0),
-              MainTextField(
-                label: 'Senha',
-                controller: passwordController,
-                icon: Icons.lock,
-                isPassword: true,
-              ),
-              const SizedBox(height: 16.0),
-              MainTextField(
-                label: 'Confirmar senha',
-                controller: confirmPasswordController,
-                icon: Icons.lock,
-                isPassword: true,
-              ),
-              const SizedBox(height: 32.0),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.deepPurple[600],
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 50.0,
-                    vertical: 15.0,
+                    child: const Text('Cadastre-se',
+                        style: TextStyle(color: Colors.white, fontSize: 18)),
                   ),
                 ),
-                onPressed: () {
-                  // Implementar a lógica de cadastro
-                  final name = nameController.text;
-                  final email = emailController.text;
-                  final password = passwordController.text;
-                  final confirmPassword = confirmPasswordController.text;
-                  print('Name: $name, Email: $email, Password: $password, Confirm Password: $confirmPassword');
-                },
-                child: const Text('Cadastre-se'),
               ),
+              const Gap(20),
             ],
           ),
         ),
