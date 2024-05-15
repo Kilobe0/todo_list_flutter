@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_flutter/app/my_app_controller.dart';
+import 'package:todo_list_flutter/app/pages/login/login_page.dart';
 
 import 'pages/home/home_page.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
                 ? Brightness.dark
                 : Brightness.light,
           ),
-          home: const HomePage(),
+          home: LoginPage(),
         );
       }
     );
