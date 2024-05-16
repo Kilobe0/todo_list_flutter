@@ -8,13 +8,34 @@ class TaskList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: tasks.length,
-      itemBuilder: (context, index) {
-        return TaskCard(
-          task: tasks[index],
-        );
-      },
-    );
+    return tasks.isEmpty
+        ? const Center(
+            child: Text(
+              'Nenhuma tarefa encontrada',
+              style: TextStyle(
+                fontSize: 20,
+                fontFamily: 'Montserrat',
+              ),
+            ),
+          )
+        : ListView.builder(
+            itemCount: tasks.length,
+            itemBuilder: (context, index) {
+              if (tasks.isEmpty) {
+                return const Center(
+                  child: Text(
+                    'Nenhuma tarefa encontrada',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'Montserrat',
+                    ),
+                  ),
+                );
+              }
+              return TaskCard(
+                task: tasks[index],
+              );
+            },
+          );
   }
 }

@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list_flutter/app/controllers/user_tasks.controller.dart';
+import 'package:todo_list_flutter/app/models/task_model.dart';
+import 'package:todo_list_flutter/app/widgets/snackbar_message.dart';
 
 class AddTaskAlertDialog extends StatefulWidget {
-  const AddTaskAlertDialog({super.key});
-
+  AddTaskAlertDialog({super.key, this.task});
+  TaskModel? task;
   @override
   State<AddTaskAlertDialog> createState() => _AddTaskAlertDialogState();
 }
 
 class _AddTaskAlertDialogState extends State<AddTaskAlertDialog> {
-  TextEditingController taskNameController = TextEditingController();
-  TextEditingController taskDescriptionController = TextEditingController();
-  TextEditingController taskDateController = TextEditingController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    if (widget.task != null) {
+      UserTasksController.instance.taskNameController.text = widget.task!.title;
+      UserTasksController.instance.taskDescriptionController.text =
+          widget.task!.description;
+      UserTasksController.instance.dateTime = widget.task!.date!;
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -27,7 +39,9 @@ class _AddTaskAlertDialogState extends State<AddTaskAlertDialog> {
               },
               child: const Icon(Icons.arrow_back_rounded),
             ),
-            const Text('Adicionar Tarefa'),
+            widget.task == null
+                ? const Text('Adicionar Tarefa')
+                : const Text('Editar Tarefa'),
             Container(),
           ],
         ),
@@ -39,12 +53,14 @@ class _AddTaskAlertDialogState extends State<AddTaskAlertDialog> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.fromLTRB(0, 10, 10, 10),
-              child: Text('Nova Tarefa'),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 10, 10, 10),
+              child: widget.task == null
+                  ? const Text('Nova Tarefa')
+                  : const Text('Editar Tarefa'),
             ),
             TextField(
-              controller: taskNameController,
+              controller: UserTasksController.instance.taskNameController,
               decoration: const InputDecoration(
                 constraints: BoxConstraints(
                   minWidth: 300,
@@ -60,7 +76,8 @@ class _AddTaskAlertDialogState extends State<AddTaskAlertDialog> {
               child: Text('Descrição'),
             ),
             TextField(
-              controller: taskDescriptionController,
+              controller:
+                  UserTasksController.instance.taskDescriptionController,
               maxLines: 3,
               decoration: const InputDecoration(
                 constraints: BoxConstraints(
@@ -86,12 +103,13 @@ class _AddTaskAlertDialogState extends State<AddTaskAlertDialog> {
                 );
                 if (datePicked != null) {
                   setState(() {
-                    taskDateController.text =
-                        '${datePicked.day}/${datePicked.month}/${datePicked.year}';
+                    UserTasksController.instance.dateTime = datePicked;
                   });
                 }
               },
-              controller: taskDateController,
+              controller: TextEditingController(
+                  text:
+                      '${UserTasksController.instance.dateTime.day}/${UserTasksController.instance.dateTime.month}/${UserTasksController.instance.dateTime.year}'),
               readOnly: true,
               decoration: const InputDecoration(
                 suffixIcon: Padding(
@@ -113,10 +131,28 @@ class _AddTaskAlertDialogState extends State<AddTaskAlertDialog> {
       actionsAlignment: MainAxisAlignment.center,
       actions: [
         TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
+          onPressed: () async {
+            if (widget.task == null) {
+              await UserTasksController.instance.addTask(context);
+            } else {
+              widget.task!.title =
+                  UserTasksController.instance.taskNameController.text;
+              widget.task!.description =
+                  UserTasksController.instance.taskDescriptionController.text;
+              widget.task!.date = UserTasksController.instance.dateTime;
+              if (widget.task!.title.isEmpty) {
+                showSnackBarError(context, 'Nome da tarefa está vazio');
+                return;
+              }
+
+              await UserTasksController.instance
+                  .updateTask(context, widget.task!);
+            }
+            context.mounted ? Navigator.of(context).pop() : null;
           },
-          child: const Text('Adicionar'),
+          child: widget.task == null
+              ? const Text('Adicionar')
+              : const Text('Salvar'),
         ),
       ],
     );

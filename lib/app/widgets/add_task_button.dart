@@ -8,7 +8,11 @@ class AddTaskButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () {
-        showDialog(context: context, builder: (context) => const AddTaskAlertDialog());
+        showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (context) => AddTaskAlertDialog(),
+        );
       },
       child: const Icon(Icons.add),
     );

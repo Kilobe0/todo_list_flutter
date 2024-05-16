@@ -2,28 +2,30 @@
 import 'dart:convert';
 
 class TaskModel {
-  String? userId;
-  String? id;
+  String userId;
+  String id;
   String title;
   String description;
-  DateTime? date;
+  DateTime date;
   bool isDone;
 
   TaskModel({
     required this.userId,
-    this.id,
+    required this.id,
     required this.title,
     required this.description,
-    this.date,
+    required this.date,
     required this.isDone,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'id': id,
       'userId': userId,
       'title': title,
       'description': description,
       'isDone': isDone,
+      'date': date.toIso8601String(),
     };
   }
 

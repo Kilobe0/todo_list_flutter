@@ -5,8 +5,8 @@ import 'package:gap/gap.dart';
 import 'item_menu_drawer.dart';
 
 class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({super.key});
-
+  const DrawerWidget({super.key, this.image});
+  final Image? image;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -15,13 +15,15 @@ class DrawerWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const Gap(50),
-          const CircleAvatar(
-            radius: 50,
-            // Aqui substituir pela imagem do usuario
-            child: FlutterLogo(
-              size: 50,
-            ),
-          ),
+          image != null
+              ? image!
+              : const CircleAvatar(
+                  radius: 50,
+                  // Aqui substituir pela imagem do usuario
+                  child: FlutterLogo(
+                    size: 50,
+                  ),
+                ),
           const Gap(10),
           const Text(
             'Nome do Usuário',

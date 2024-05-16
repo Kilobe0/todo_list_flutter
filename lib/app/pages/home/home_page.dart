@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list_flutter/app/controllers/user_controller.dart';
+import 'package:todo_list_flutter/app/controllers/user_tasks.controller.dart';
 import 'package:todo_list_flutter/app/pages/home/home_controller.dart';
+import 'package:todo_list_flutter/app/pages/login/login_page.dart';
 import 'package:todo_list_flutter/app/widgets/profile/drawer_profile.dart';
 
 import '../../models/task_model.dart';
@@ -13,7 +16,19 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Verificação de autenticação
+    if (UserController.instance.userLogged == null) {
+      // Redireciona para a página de login se não estiver logado
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const LoginPage()),
+        );
+      });
+      return const SizedBox
+          .shrink(); // Retorna um widget vazio enquanto redireciona
+    }
     return Scaffold(
+      
       appBar: header(context),
       drawer: AnimatedBuilder(
         animation: HomeController.instance,
@@ -28,11 +43,16 @@ class HomePage extends StatelessWidget {
           }
         },
       ),
-      body: const Center(
+      body: Center(
         child: SizedBox(
           width: 500,
-          child: TaskList(
-            tasks: [],
+          child: AnimatedBuilder(
+            animation: UserTasksController.instance,
+            builder: (context, child) {
+              return TaskList(
+                tasks: UserTasksController.instance.tasks,
+              );
+            }
           ),
         ),
       ),

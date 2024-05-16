@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:todo_list_flutter/app/controllers/finished_tasks_controller.dart';
+import 'package:todo_list_flutter/app/controllers/user_controller.dart';
+import 'package:todo_list_flutter/app/models/user_model.dart';
 import 'package:todo_list_flutter/app/widgets/header/notification_icon.dart';
 
 AppBar header(context) {
@@ -19,10 +23,21 @@ AppBar header(context) {
                 Scaffold.of(context).openDrawer();
               },
               borderRadius: BorderRadius.circular(100),
-              child: const CircleAvatar(
-                backgroundImage:
-                    AssetImage('../assets/images/profile_pic.jpeg'),
-              ),
+              child: AnimatedBuilder(
+                  animation: UserController.instance,
+                  builder: (context, child) {
+                    if (UserController.instance.userLogged!.imageBinary == null) {
+                      return const CircleAvatar(
+                        child: Icon(Icons.person),
+                      );
+                    }
+                    return CircleAvatar(
+                      backgroundImage: MemoryImage(
+                        base64Decode(
+                            UserController.instance.userLogged!.imageBinary!),
+                      ),
+                    );
+                  }),
             ),
           ),
           const Text(

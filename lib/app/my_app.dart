@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list_flutter/app/data/user_data.dart';
+import 'package:todo_list_flutter/app/controllers/user_controller.dart';
 import 'package:todo_list_flutter/app/my_app_controller.dart';
 import 'package:todo_list_flutter/app/pages/login/login_page.dart';
 import 'package:todo_list_flutter/app/pages/register/register_page.dart';
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
                   : Brightness.light,
             ),
             onGenerateRoute: (settings) {
-              bool isLoggedIn = UserData.userLogged != null;
+              bool isLoggedIn = UserController.instance.userLogged != null;
               if (settings.name == '/login' || settings.name == '/home') {
                 return MaterialPageRoute(
                   builder: (context) =>
@@ -31,9 +31,15 @@ class MyApp extends StatelessWidget {
                 );
               }
               // Adicione outras rotas aqui
-              return MaterialPageRoute(builder: (context) => const RegisterPage());
+              return MaterialPageRoute(
+                  builder: (context) => const RegisterPage());
             },
-            initialRoute: '/login',
+            routes: {
+              '/login': (context) => const LoginPage(),
+              '/register': (context) => const RegisterPage(),
+              '/home': (context) => const HomePage(),
+            },
+            initialRoute: UserController.instance.userLogged != null ? '/home' : '/login',
           );
         });
   }

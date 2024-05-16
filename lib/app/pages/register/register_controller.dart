@@ -3,6 +3,7 @@ import 'package:todo_list_flutter/app/core/shared_keys.dart';
 import 'package:todo_list_flutter/app/models/user_model.dart';
 import 'package:todo_list_flutter/app/services/shared_service.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:todo_list_flutter/app/widgets/snackbar_message.dart';
 import 'package:uuid/uuid.dart';
 
 class RegisterController {
@@ -24,16 +25,7 @@ class RegisterController {
     bool isValid;
     (erroMensage, isValid) = validarCampos();
     if (!isValid) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            erroMensage,
-            style: const TextStyle(color: Colors.white),
-          ),
-          duration: const Duration(seconds: 1),
-          backgroundColor: Colors.red,
-        ),
-      );
+      showSnackBarError(context, erroMensage);
       return;
     }
 

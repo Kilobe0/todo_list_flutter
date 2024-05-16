@@ -6,34 +6,45 @@ class SupabaseService {
   static final SupabaseService instance = SupabaseService();
   final supabase = Supabase.instance.client;
 
-
   Future<void> userRegister(UserModel user) async {
     await supabase.from('users').insert(user.toMap());
   }
 
   Future<UserModel?> getUserByEmail(String email) async {
     final data = await supabase.from('users').select().eq('email', email);
-    if(data.isEmpty) return null;
+    if (data.isEmpty) return null;
     return UserModel.fromMap(data[0]);
   }
+
   Future<List<Map<String, dynamic>>> getUserTasks(String id) async {
     final data = await supabase.from('tasks').select().eq('userId', id);
     return data;
   }
 
   Future<void> addTask(Map<String, dynamic> task) async {
-    await supabase.from('tasks').insert(task);
+    await supabase.from('tasks').insert({
+      'title': task['title'],
+      'description': task['description'],
+      'isDone': task['isDone'],
+      'date': task['date'],
+      'userId': task['userId'],
+    });
   }
 
   Future<void> deleteTask(String id) async {
     await supabase.from('tasks').delete().eq('id', id);
   }
 
-  Future<void> updateTask(TaskModel task) async {
+  Future<void> updateTask(Map<String, dynamic> task) async {
     await supabase.from('tasks').update({
-      'title': task.title,
-      'description': task.description,
-      'isDone': task.isDone,
-    }).eq('id', task.id!);
+      'title': task['title'],
+      'description': task['description'],
+      'isDone': task['isDone'],
+      'date': task['date'],
+    }).eq('id', task['id']);
+  }
+
+  Future<void> changeIsDone(String id, bool isDone) async {
+    await supabase.from('tasks').update({'isDone': isDone}).eq('id', id);
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_list_flutter/app/pages/login/login_controller.dart';
+import 'package:todo_list_flutter/app/services/supabase_service.dart';
 import 'package:todo_list_flutter/app/widgets/main_text_field.dart';
 
 class LoginPage extends StatelessWidget {
@@ -9,7 +10,8 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 20, 18, 24), // Fundo roxo escuro
+      backgroundColor:
+          const Color.fromARGB(255, 20, 18, 24), // Fundo roxo escuro
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -20,7 +22,8 @@ class LoginPage extends StatelessWidget {
               color: const Color(0xFF210A3E), // Fundo do container
               borderRadius: BorderRadius.circular(20),
             ),
-            padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 24.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 32.0, horizontal: 24.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
@@ -68,7 +71,8 @@ class LoginPage extends StatelessWidget {
                           Navigator.pushReplacementNamed(context, '/register');
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF210A3E), // Fundo do botão
+                          backgroundColor:
+                              const Color(0xFF210A3E), // Fundo do botão
                           padding: const EdgeInsets.symmetric(
                               horizontal: 24.0, vertical: 12.0),
                           shape: RoundedRectangleBorder(
@@ -87,11 +91,13 @@ class LoginPage extends StatelessWidget {
                       width: 150,
                       height: 50,
                       child: ElevatedButton(
-                        onPressed: () {
-                          // Lógica de login
+                        onPressed: () async {
+                          //TODO: Lógica de login
+                          await LoginController.instance.login(context);
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF663AB8), // Fundo do botão
+                          backgroundColor:
+                              const Color(0xFF663AB8), // Fundo do botão
                           padding: const EdgeInsets.symmetric(
                               horizontal: 24.0, vertical: 12.0),
                           shape: RoundedRectangleBorder(
