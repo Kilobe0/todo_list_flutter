@@ -56,8 +56,8 @@ class UserTasksController extends ChangeNotifier {
   }
 
   Future<void> deleteTask(BuildContext context, TaskModel task) async {
-    tasks.remove(task);
     await SupabaseService.instance.deleteTask(task.id);
+    tasks.remove(task);
     notifyListeners();
   }
 }

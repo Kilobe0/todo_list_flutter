@@ -3,11 +3,11 @@ import 'package:todo_list_flutter/app/controllers/user_controller.dart';
 import 'package:todo_list_flutter/app/controllers/user_tasks.controller.dart';
 import 'package:todo_list_flutter/app/pages/home/home_controller.dart';
 import 'package:todo_list_flutter/app/pages/login/login_page.dart';
-import 'package:todo_list_flutter/app/widgets/profile/drawer_profile.dart';
+import 'package:todo_list_flutter/app/pages/home/widgets/drawer/drawer_profile.dart';
 
 import '../../widgets/add_task_button.dart';
-import '../../widgets/drawer/drawer_widget.dart';
-import '../../widgets/header/header.dart';
+import 'widgets/drawer/drawer_widget.dart';
+import 'widgets/header/header.dart';
 import '../../widgets/taskview/task_list.dart';
 
 class HomePage extends StatelessWidget {

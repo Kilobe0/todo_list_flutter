@@ -46,4 +46,8 @@ class SupabaseService {
   Future<void> changeIsDone(String id, bool isDone) async {
     await supabase.from('tasks').update({'isDone': isDone}).eq('id', id);
   }
+
+  Future<void> updateUserImage(String id, String imageBinary) async {
+    await supabase.from('users').update({'imageBinary': imageBinary}).eq('id', id);
+  }
 }

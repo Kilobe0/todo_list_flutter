@@ -13,8 +13,7 @@ const _supabaseKey =
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(const LoadingPage());
-  await Future.delayed(const Duration(seconds: 5));
+  //runApp(const LoadingPage());
   await Supabase.initialize(
     url: _supabaseUrl,
     anonKey: _supabaseKey,

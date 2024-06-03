@@ -46,9 +46,7 @@ class TaskCard extends StatelessWidget {
             title: Text(task.title),
             subtitle: Text('Descrição: ${task.description}'),
             trailing: Text(task.date.day.toString()),
-            leading: Checkbox(value: task.isDone, onChanged: (value) {
-              
-            }),
+            leading: Checkbox(value: task.isDone, onChanged: (value) {}),
           ),
         ),
       ),

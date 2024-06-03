@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:todo_list_flutter/app/controllers/user_controller.dart';
+import 'package:todo_list_flutter/app/controllers/user_tasks.controller.dart';
 import 'package:todo_list_flutter/app/pages/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -5,8 +9,8 @@ import 'package:gap/gap.dart';
 import 'item_menu_drawer.dart';
 
 class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({super.key, this.image});
-  final Image? image;
+  const DrawerWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -15,27 +19,40 @@ class DrawerWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const Gap(50),
-          image != null
-              ? image!
-              : const CircleAvatar(
+          AnimatedBuilder(
+            animation: UserController.instance,
+            builder: (context, child) {
+              if (UserController.instance.userLogged!.imageBinary != null) {
+                return CircleAvatar(
                   radius: 50,
-                  // Aqui substituir pela imagem do usuario
-                  child: FlutterLogo(
-                    size: 50,
+                  backgroundImage: MemoryImage(
+                    base64Decode(
+                      UserController.instance.userLogged!.imageBinary!,
+                    ),
                   ),
+                );
+              }
+              return const CircleAvatar(
+                radius: 50,
+                child: Icon(
+                  Icons.person,
+                  size: 50,
                 ),
+              );
+            },
+          ),
           const Gap(10),
-          const Text(
-            'Nome do Usuário',
-            style: TextStyle(
+          Text(
+            UserController.instance.userLogged!.name,
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
           const Gap(10),
-          const Text(
-            'N Tarefas',
-            style: TextStyle(
+          Text(
+            '${UserTasksController.instance.tasks.length.toString()} tarefas',
+            style: const TextStyle(
               fontSize: 16,
               color: Colors.deepPurple,
             ),

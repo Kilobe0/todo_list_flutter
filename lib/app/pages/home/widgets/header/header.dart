@@ -20,22 +20,27 @@ AppBar header(context) {
               onTap: () {
                 Scaffold.of(context).openDrawer();
               },
-              borderRadius: BorderRadius.circular(100),
-              child: AnimatedBuilder(
-                  animation: UserController.instance,
-                  builder: (context, child) {
-                    if (UserController.instance.userLogged!.imageBinary == null) {
-                      return const CircleAvatar(
-                        child: Icon(Icons.person),
+              borderRadius: BorderRadius.circular(50),
+              hoverColor: Color.fromARGB(52, 255, 255, 255),
+              child: Padding(
+                padding: const EdgeInsets.all(6.0),
+                child: AnimatedBuilder(
+                    animation: UserController.instance,
+                    builder: (context, child) {
+                      if (UserController.instance.userLogged!.imageBinary ==
+                          null) {
+                        return const CircleAvatar(
+                          child: Icon(Icons.person),
+                        );
+                      }
+                      return CircleAvatar(
+                        backgroundImage: MemoryImage(
+                          base64Decode(
+                              UserController.instance.userLogged!.imageBinary!),
+                        ),
                       );
-                    }
-                    return CircleAvatar(
-                      backgroundImage: MemoryImage(
-                        base64Decode(
-                            UserController.instance.userLogged!.imageBinary!),
-                      ),
-                    );
-                  }),
+                    }),
+              ),
             ),
           ),
           const Text(

@@ -43,6 +43,7 @@ dependencies:
   email_validator: ^2.1.17
   uuid: ^4.4.0
   page_transition: ^2.1.0
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_flutter/app/widgets/taskview/task_listtile_on_notifications.dart';
 
-import '../../models/task_model.dart';
+import '../../../../models/task_model.dart';
 
 class NotificationIcon extends StatelessWidget {
   const NotificationIcon({

@@ -8,6 +8,13 @@ import 'package:todo_list_flutter/app/services/supabase_service.dart';
 import 'package:todo_list_flutter/app/widgets/snackbar_message.dart';
 import 'package:uuid/uuid.dart';
 
+const String kFillAllFieldsError = 'Preencha todos os campos';
+const String kInvalidEmailError = 'Email inválido';
+const String kEmailAlreadyRegisteredError = 'Email já cadastrado';
+const String kPasswordsMustMatchError = 'As senhas devem ser iguais';
+const String kPasswordMinLengthError =
+    'A senha deve ter pelo menos 6 caracteres';
+
 class RegisterController {
   static final RegisterController instance = RegisterController();
   TextEditingController nameController = TextEditingController();
@@ -49,7 +56,7 @@ class RegisterController {
     UserController.instance.userLogged = user;
     await SharedService.instance.prefs
         .setString(SharedKeys.userCredentials, user.toJson());
-
+    await SupabaseService.instance.userRegister(user);
     context.mounted
         ? Navigator.of(context).pushReplacementNamed('/home')
         : null;
@@ -61,20 +68,20 @@ class RegisterController {
         emailController.text.isEmpty ||
         passwordController.text.isEmpty ||
         confirmPasswordController.text.isEmpty) {
-      return ('Preencha todos os campos', false);
+      return (kFillAllFieldsError, false);
     } else if (!EmailValidator.validate(emailController.text)) {
       return ('Email inválido', false);
     } else {
       UserModel? user =
           await SupabaseService.instance.getUserByEmail(emailController.text);
       if (user != null) {
-        return ('Email já cadastrado', false);
+        return (kEmailAlreadyRegisteredError, false);
       }
     }
     if (passwordController.text != confirmPasswordController.text) {
-      return ('As senhas devem ser iguais', false);
+      return (kPasswordsMustMatchError, false);
     } else if (passwordController.text.trim().length < 6) {
-      return ('A senha deve ter pelo menos 6 caracteres', false);
+      return (kPasswordMinLengthError, false);
     }
     return ('', true);
   }
