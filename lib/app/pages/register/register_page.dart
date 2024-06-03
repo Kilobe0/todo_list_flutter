@@ -94,7 +94,7 @@ class RegisterPage extends StatelessWidget {
                 const Gap(24.0),
                 Center(
                   child: SizedBox(
-                    width: 150,
+                    width: 160,
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () async {
@@ -110,8 +110,14 @@ class RegisterPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
-                      child: const Text('Cadastre-se',
-                          style: TextStyle(color: Colors.white, fontSize: 18)),
+                      child: const Text(
+                        'Cadastre-se',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
                 ),

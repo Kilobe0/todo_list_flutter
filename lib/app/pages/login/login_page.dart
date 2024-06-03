@@ -70,7 +70,7 @@ class LoginPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        width: 150,
+                        width: 160,
                         height: 50,
                         child: ElevatedButton(
                           onPressed: () {
@@ -89,9 +89,14 @@ class LoginPage extends StatelessWidget {
                                   color: Color(0xFFA484E3)), // Borda do botão
                             ),
                           ),
-                          child: const Text('Cadastre-se',
-                              style: TextStyle(
-                                  color: Color(0xFFA484E3), fontSize: 18)),
+                          child: const Text(
+                            'Cadastre-se',
+                            style: TextStyle(
+                              color: Color(0xFFA484E3),
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ),
                       const Gap(20),
@@ -112,9 +117,14 @@ class LoginPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(30),
                             ),
                           ),
-                          child: const Text('Login',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 18)),
+                          child: const Text(
+                            'Login',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ),
                     ],

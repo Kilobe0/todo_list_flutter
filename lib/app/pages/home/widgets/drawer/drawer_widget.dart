@@ -53,8 +53,9 @@ class DrawerWidget extends StatelessWidget {
           Text(
             '${UserTasksController.instance.tasks.length.toString()} tarefas',
             style: const TextStyle(
-              fontSize: 16,
-              color: Colors.deepPurple,
+              fontSize: 18,
+              color: Color.fromARGB(255, 132, 101, 185),
+              fontWeight: FontWeight.bold,
             ),
           ),
           const Divider(),

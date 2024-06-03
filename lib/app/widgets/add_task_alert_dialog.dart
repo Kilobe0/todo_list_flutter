@@ -61,9 +61,11 @@ class _AddTaskAlertDialogState extends State<AddTaskAlertDialog> {
             ),
             TextField(
               controller: UserTasksController.instance.taskNameController,
+              maxLength: 40,
               decoration: const InputDecoration(
                 constraints: BoxConstraints(
                   minWidth: 300,
+                  maxWidth: 300,
                 ),
                 hintText: 'Nome da sua tarefa',
                 border: OutlineInputBorder(
@@ -79,9 +81,11 @@ class _AddTaskAlertDialogState extends State<AddTaskAlertDialog> {
               controller:
                   UserTasksController.instance.taskDescriptionController,
               maxLines: 3,
+              maxLength: 500,
               decoration: const InputDecoration(
                 constraints: BoxConstraints(
                   minWidth: 300,
+                  maxWidth: 300,
                 ),
                 hintText: 'Descreva sua tarefa',
                 border: OutlineInputBorder(
@@ -118,6 +122,7 @@ class _AddTaskAlertDialogState extends State<AddTaskAlertDialog> {
                 ),
                 constraints: BoxConstraints(
                   minWidth: 300,
+                  maxWidth: 300,
                 ),
                 hintText: 'Selecione uma data',
                 border: OutlineInputBorder(

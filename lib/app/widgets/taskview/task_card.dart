@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:todo_list_flutter/app/controllers/user_tasks.controller.dart';
 import 'package:todo_list_flutter/app/models/task_model.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:todo_list_flutter/app/src/date_operations.dart';
 import 'package:todo_list_flutter/app/widgets/add_task_alert_dialog.dart';
+import 'package:todo_list_flutter/app/widgets/taskview/task_visualizer.dart';
 
 class TaskCard extends StatelessWidget {
   const TaskCard({super.key, required this.task});
@@ -43,10 +45,37 @@ class TaskCard extends StatelessWidget {
                   context: context,
                   builder: (context) => AddTaskAlertDialog(task: task));
             },
-            title: Text(task.title),
-            subtitle: Text('Descrição: ${task.description}'),
-            trailing: Text(task.date.day.toString()),
-            leading: Checkbox(value: task.isDone, onChanged: (value) {}),
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) => TaskVisualizer(
+                  task: task,
+                ),
+              );
+            },
+            title: Text(
+              task.title,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                decoration: task.isDone
+                    ? TextDecoration.lineThrough
+                    : TextDecoration.none,
+              ),
+            ),
+            subtitle: Text(
+              'Descrição: ${task.description}',
+              overflow: TextOverflow.ellipsis,
+            ),
+            trailing: Text(
+              '${DateOperations.instance.calculateDaysUntil(task.date)} d',
+            ),
+            leading: Checkbox(
+              value: task.isDone,
+              onChanged: (value) async {
+                await UserTasksController.instance.changeIsDone(context, task);
+              },
+            ),
           ),
         ),
       ),

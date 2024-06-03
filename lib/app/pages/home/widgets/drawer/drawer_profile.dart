@@ -117,8 +117,9 @@ class DrawerProfile extends StatelessWidget {
           Text(
             UserController.instance.userLogged!.email,
             style: const TextStyle(
-              fontSize: 16,
-              color: Colors.deepPurple,
+              fontSize: 18,
+              color: Color.fromARGB(255, 132, 101, 185),
+              fontWeight: FontWeight.bold,
             ),
           ),
           const Divider(),

@@ -26,6 +26,9 @@ class _MainTextFieldState extends State<MainTextField> {
       maxLines: widget.maxLines,
       controller: widget.controller,
       decoration: InputDecoration(
+          constraints: const BoxConstraints(
+            maxWidth: 300,
+          ),
           contentPadding: const EdgeInsets.only(left: 30, top: 18, bottom: 18),
           isDense: true,
           labelText: widget.label,

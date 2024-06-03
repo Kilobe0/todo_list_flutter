@@ -21,6 +21,8 @@ class MyApp extends StatelessWidget {
               brightness: MyAppController.instance.getIsDark
                   ? Brightness.dark
                   : Brightness.light,
+              fontFamily: 'Montserrat',
+              useMaterial3: true,
             ),
             onGenerateRoute: (settings) {
               bool isLoggedIn = UserController.instance.userLogged != null;
@@ -39,7 +41,8 @@ class MyApp extends StatelessWidget {
               '/register': (context) => const RegisterPage(),
               '/home': (context) => const HomePage(),
             },
-            initialRoute: UserController.instance.userLogged != null ? '/home' : '/login',
+            initialRoute:
+                UserController.instance.userLogged != null ? '/home' : '/login',
           );
         });
   }
