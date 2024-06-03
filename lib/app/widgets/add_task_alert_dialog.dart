@@ -18,7 +18,7 @@ class _AddTaskAlertDialogState extends State<AddTaskAlertDialog> {
       UserTasksController.instance.taskNameController.text = widget.task!.title;
       UserTasksController.instance.taskDescriptionController.text =
           widget.task!.description;
-      UserTasksController.instance.dateTime = widget.task!.date!;
+      UserTasksController.instance.dateTime = widget.task!.date;
     }
     super.initState();
   }

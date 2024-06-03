@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:todo_list_flutter/app/pages/login/login_controller.dart';
 import 'package:todo_list_flutter/app/pages/register/register_controller.dart';
 import 'package:todo_list_flutter/app/widgets/main_text_field.dart';
 
@@ -90,8 +89,9 @@ class RegisterPage extends StatelessWidget {
                   width: 150,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: ()  async {
                       // TODO: Lógica de cadastro
+                      await RegisterController.instance.registerUser(context);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor:

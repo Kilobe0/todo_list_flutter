@@ -6,7 +6,19 @@ class LoadingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: criar loading page
-    return Container();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Todo-List',
+      theme: ThemeData(
+        brightness: Brightness.dark,
+      ),
+      home: Scaffold(
+        body: Center(
+          child: LottieBuilder.asset(
+            'assets/lottie/loading.json',
+          ),
+        ),
+      ),
+    );
   }
 }

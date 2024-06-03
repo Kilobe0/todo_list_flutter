@@ -5,7 +5,6 @@ import 'package:todo_list_flutter/app/pages/home/home_controller.dart';
 import 'package:todo_list_flutter/app/pages/login/login_page.dart';
 import 'package:todo_list_flutter/app/widgets/profile/drawer_profile.dart';
 
-import '../../models/task_model.dart';
 import '../../widgets/add_task_button.dart';
 import '../../widgets/drawer/drawer_widget.dart';
 import '../../widgets/header/header.dart';

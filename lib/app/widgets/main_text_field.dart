@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 class MainTextField extends StatefulWidget {
-  const MainTextField({
-    super.key,
-    required this.label,
-    required this.controller,
-    this.icon,
-    required this.isPassword,
-    this.maxLines = 1
-  });
+  const MainTextField(
+      {super.key,
+      required this.label,
+      required this.controller,
+      this.icon,
+      required this.isPassword,
+      this.maxLines = 1});
   final String label;
   final TextEditingController controller;
   final IconData? icon;
@@ -43,7 +42,7 @@ class _MainTextFieldState extends State<MainTextField> {
                 )
               : null,
           suffixIcon: widget.isPassword
-              ? GestureDetector(
+              ? InkWell(
                   onTap: () {
                     setState(() {
                       isObscure = !isObscure;

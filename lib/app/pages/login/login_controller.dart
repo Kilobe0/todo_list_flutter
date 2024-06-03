@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_list_flutter/app/controllers/user_tasks.controller.dart';
 import 'package:todo_list_flutter/app/core/shared_keys.dart';
 import 'package:todo_list_flutter/app/controllers/user_controller.dart';
 import 'package:todo_list_flutter/app/models/task_model.dart';
 import 'package:todo_list_flutter/app/models/user_model.dart';
 import 'package:todo_list_flutter/app/services/shared_service.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:todo_list_flutter/app/services/supabase_service.dart';
-import 'package:uuid/uuid.dart';
 
 import '../../widgets/snackbar_message.dart';
 
@@ -45,8 +42,7 @@ class LoginController {
           UserController.instance.userLogged = user;
           List<Map<String, dynamic>> tasksListMap = await SupabaseService.instance.getUserTasks(user.id);
           UserTasksController.instance.tasks = tasksListMap.map((e) => TaskModel.fromMap(e)).toList();
-          var prefs = await SharedPreferences.getInstance();
-          prefs.setString(SharedKeys.instance.userCredentials, user.toJson());
+          await SharedService.instance.prefs.setString(SharedKeys.userCredentials, user.toJson());
           context.mounted
               ? Navigator.of(context).pushReplacementNamed('/home')
               : null;

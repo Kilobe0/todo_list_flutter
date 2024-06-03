@@ -1,5 +1,4 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:todo_list_flutter/app/models/task_model.dart';
 import 'package:todo_list_flutter/app/models/user_model.dart';
 
 class SupabaseService {

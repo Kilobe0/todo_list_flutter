@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_list_flutter/app/pages/login/login_controller.dart';
-import 'package:todo_list_flutter/app/services/supabase_service.dart';
 import 'package:todo_list_flutter/app/widgets/main_text_field.dart';
 
 class LoginPage extends StatelessWidget {

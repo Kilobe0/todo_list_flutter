@@ -1,5 +1,4 @@
 class SharedKeys {
-  static final SharedKeys instance = SharedKeys();
-  String get isDark => 'isDark';
-  String get userCredentials => 'userCredentials';
+  static String get isDark => 'isDark';
+  static String get userCredentials => 'userCredentials';
 }

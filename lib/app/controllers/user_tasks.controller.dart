@@ -47,7 +47,6 @@ class UserTasksController extends ChangeNotifier {
     await SupabaseService.instance.updateTask(task.toMap());
     clearControllers();
     notifyListeners();
-    context.mounted ? Navigator.pop(context) : null;
   }
 
   Future<void> changeIsDone(BuildContext context, TaskModel task) async {
