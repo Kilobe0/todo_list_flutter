@@ -14,35 +14,69 @@ class LoginController {
   static final LoginController instance = LoginController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  UserModel? _user;
 
   void clearControllers() {
     emailController.clear();
     passwordController.clear();
   }
 
-  Future<void> login(BuildContext context) async {
+  Future<void> initUserData() async {
+    UserController.instance.userLogged = _user;
+    List<Map<String, dynamic>> tasksListMap =
+        await SupabaseService.instance.getUserTasks(_user!.id);
+    UserTasksController.instance.tasks =
+        tasksListMap.map((e) => TaskModel.fromMap(e)).toList();
+    await SharedService.instance.prefs
+        .setString(SharedKeys.userCredentials, _user!.toJson());
+  }
+
+  bool validateFields() {
     if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  Future<bool> userExists() async {
+    UserModel? user;
+    try {
+      user =
+          await SupabaseService.instance.getUserByEmail(emailController.text);
+    } catch (e) {
+      debugPrint(e.toString());
+      return false;
+    }
+    if (user == null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  Future<void> getUser() async {
+    _user = await SupabaseService.instance.getUserByEmail(emailController.text);
+  }
+
+  Future<void> login(BuildContext context) async {
+    if (!validateFields()) {
       showSnackBarError(context, 'Preencha todos os campos');
       return;
     } else {
-      UserModel? user =
-          await SupabaseService.instance.getUserByEmail(emailController.text);
-      if (user == null) {
+      if (await userExists() == false) {
         context.mounted
             ? showSnackBarError(context, 'Email ou senha inválido')
-            : null;
+            : await getUser();
         return;
       } else {
-        if (user.password != passwordController.text) {
+        if (_user!.password != passwordController.text) {
           context.mounted
               ? showSnackBarError(context, 'Email ou senha inválido')
               : null;
           return;
         } else {
-          UserController.instance.userLogged = user;
-          List<Map<String, dynamic>> tasksListMap = await SupabaseService.instance.getUserTasks(user.id);
-          UserTasksController.instance.tasks = tasksListMap.map((e) => TaskModel.fromMap(e)).toList();
-          await SharedService.instance.prefs.setString(SharedKeys.userCredentials, user.toJson());
+          await initUserData();
           context.mounted
               ? Navigator.of(context).pushReplacementNamed('/home')
               : null;

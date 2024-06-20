@@ -105,7 +105,6 @@ class LoginPage extends StatelessWidget {
                         height: 50,
                         child: ElevatedButton(
                           onPressed: () async {
-                            //TODO: Lógica de login
                             await LoginController.instance.login(context);
                           },
                           style: ElevatedButton.styleFrom(
