@@ -3,7 +3,7 @@ class DateOperations {
   String calculateDaysUntil(DateTime futureDate) {
     DateTime currentDate = DateTime.now();
     Duration difference = futureDate.difference(currentDate);
-    return difference.inDays.toString();
+    return (difference.inDays + 1).toString();
   }
 
   String formatDateBr(DateTime date) {
