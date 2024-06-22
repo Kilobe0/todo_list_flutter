@@ -22,13 +22,17 @@ class LoginController {
   }
 
   Future<void> initUserData() async {
-    UserController.instance.userLogged = _user;
-    List<Map<String, dynamic>> tasksListMap =
-        await SupabaseService.instance.getUserTasks(_user!.id);
-    UserTasksController.instance.tasks =
-        tasksListMap.map((e) => TaskModel.fromMap(e)).toList();
-    await SharedService.instance.prefs
-        .setString(SharedKeys.userCredentials, _user!.toJson());
+    try {
+      UserController.instance.userLogged = _user;
+      List<Map<String, dynamic>> tasksListMap =
+          await SupabaseService.instance.getUserTasks(_user!.id);
+      UserTasksController.instance.tasks =
+          tasksListMap.map((e) => TaskModel.fromMap(e)).toList();
+      await SharedService.instance.prefs
+          .setString(SharedKeys.userCredentials, _user!.toJson());
+    } catch (e) {
+      rethrow;
+    }
   }
 
   bool validateFields() {
@@ -45,8 +49,7 @@ class LoginController {
       user =
           await SupabaseService.instance.getUserByEmail(emailController.text);
     } catch (e) {
-      debugPrint(e.toString());
-      return false;
+      rethrow;
     }
     if (user == null) {
       return false;
@@ -67,16 +70,21 @@ class LoginController {
       if (await userExists() == false) {
         context.mounted
             ? showSnackBarError(context, 'Email ou senha inválido')
-            : await getUser();
+            : null;
         return;
       } else {
+        await getUser();
         if (_user!.password != passwordController.text) {
           context.mounted
               ? showSnackBarError(context, 'Email ou senha inválido')
               : null;
           return;
         } else {
-          await initUserData();
+          try {
+            await initUserData();
+          } catch (e) {
+            print(e);
+          }
           context.mounted
               ? Navigator.of(context).pushReplacementNamed('/home')
               : null;
