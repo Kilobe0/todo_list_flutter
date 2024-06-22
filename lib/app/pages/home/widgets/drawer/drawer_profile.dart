@@ -157,8 +157,9 @@ class DrawerProfile extends StatelessWidget {
           ),
           const Gap(5),
           InkWell(
-            onTap: () {
-              UserController.instance.logout(context);
+            onTap: () async {
+              HomeController.instance.setCurrentDrawer(0);
+              await UserController.instance.logout(context);
             },
             borderRadius: BorderRadius.circular(20),
             child: Padding(
