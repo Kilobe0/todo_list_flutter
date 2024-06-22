@@ -21,7 +21,7 @@ class ErrorPage extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
       ),
-      home: Scaffold(
+      home: const Scaffold(
         body: Center(
           child: Text(
             'Algo deu errado, tente novamente mais tarde',

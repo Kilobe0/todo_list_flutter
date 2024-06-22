@@ -17,8 +17,8 @@ Future<void> main() async {
     runApp(const ErrorPage());
   } else {
     await Supabase.initialize(
-      url: supabaseUrl!,
-      anonKey: supabaseKey!,
+      url: supabaseUrl,
+      anonKey: supabaseKey,
     );
     await SharedService.instance
         .initPrefs(); // Inicializa a instância de SharedPreferences

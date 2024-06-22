@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:todo_list_flutter/app/controllers/user_controller.dart';
-import 'package:todo_list_flutter/app/controllers/user_tasks.controller.dart';
+import 'package:todo_list_flutter/app/controllers/user_tasks_controller.dart';
 import 'package:todo_list_flutter/app/pages/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';

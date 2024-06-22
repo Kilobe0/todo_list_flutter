@@ -32,8 +32,10 @@ class UserTasksController extends ChangeNotifier {
       date: dateTime,
       isDone: false,
     );
-    tasks.add(task);
     await SupabaseService.instance.addTask(task.toMap());
+    List<Map<String, dynamic>> tasksListMap = await SupabaseService.instance
+        .getUserTasks(UserController.instance.userLogged!.id);
+    tasks = tasksListMap.map((e) => TaskModel.fromMap(e)).toList();
     clearControllers();
     notifyListeners();
     context.mounted ? Navigator.pop(context) : null;

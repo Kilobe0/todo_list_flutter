@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list_flutter/app/controllers/user_tasks.controller.dart';
+import 'package:todo_list_flutter/app/controllers/user_tasks_controller.dart';
 import 'package:todo_list_flutter/app/models/task_model.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo_list_flutter/app/src/date_operations.dart';
@@ -27,7 +27,6 @@ class TaskCard extends StatelessWidget {
           children: [
             SlidableAction(
               onPressed: (context) async {
-                // TODO: Implement delete functionality here
                 await UserTasksController.instance.deleteTask(context, task);
               },
               backgroundColor: Colors.red,
