@@ -36,44 +36,47 @@ class TaskCard extends StatelessWidget {
             ),
           ],
         ),
-        child: Card(
-          child: ListTile(
-            onLongPress: () {
-              showDialog(
-                  barrierDismissible: false,
-                  context: context,
-                  builder: (context) => AddTaskAlertDialog(task: task));
-            },
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (context) => TaskVisualizer(
-                  task: task,
-                ),
-              );
-            },
-            title: Text(
-              task.title,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                decoration: task.isDone
-                    ? TextDecoration.lineThrough
-                    : TextDecoration.none,
-              ),
-            ),
-            subtitle: Text(
-              'Descrição: ${task.description}',
-              overflow: TextOverflow.ellipsis,
-            ),
-            trailing: Text(
-              '${DateOperations.instance.calculateDaysUntil(task.date)} d',
-            ),
-            leading: Checkbox(
-              value: task.isDone,
-              onChanged: (value) async {
-                await UserTasksController.instance.changeIsDone(context, task);
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(24.5),
+          child: Card(
+            child: ListTile(
+              onLongPress: () {
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (context) => AddTaskAlertDialog(task: task));
               },
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => TaskVisualizer(
+                    task: task,
+                  ),
+                );
+              },
+              title: Text(
+                task.title,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  decoration: task.isDone
+                      ? TextDecoration.lineThrough
+                      : TextDecoration.none,
+                ),
+              ),
+              subtitle: Text(
+                'Descrição: ${task.description}',
+                overflow: TextOverflow.ellipsis,
+              ),
+              trailing: Text(
+                '${DateOperations.instance.calculateDaysUntil(task.date)} d',
+              ),
+              leading: Checkbox(
+                value: task.isDone,
+                onChanged: (value) async {
+                  await UserTasksController.instance.changeIsDone(context, task);
+                },
+              ),
             ),
           ),
         ),
