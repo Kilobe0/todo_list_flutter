@@ -1,9 +1,9 @@
 class DateOperations {
   static final DateOperations instance = DateOperations();
-  String calculateDaysUntil(DateTime futureDate) {
+  int calculateDaysUntil(DateTime futureDate) {
     DateTime currentDate = DateTime.now();
     Duration difference = futureDate.difference(currentDate);
-    return (difference.inDays + 1).toString();
+    return (difference.inDays + 1);
   }
 
   String formatDateBr(DateTime date) {
