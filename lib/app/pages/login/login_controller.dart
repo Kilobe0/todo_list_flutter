@@ -16,6 +16,8 @@ class LoginController {
   TextEditingController passwordController = TextEditingController();
   UserModel? _user;
 
+  ValueNotifier<bool> showForgotPassword = ValueNotifier(false);
+
   void clearControllers() {
     emailController.clear();
     passwordController.clear();
@@ -78,6 +80,7 @@ class LoginController {
           context.mounted
               ? showSnackBarError(context, 'Email ou senha inválido')
               : null;
+          showForgotPassword.value = true;
           return;
         } else {
           try {

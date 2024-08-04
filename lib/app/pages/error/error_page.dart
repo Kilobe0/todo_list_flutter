@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 
 // Quando o lottie voltar a funcionar colocar essa animação
@@ -21,7 +22,7 @@ class ErrorPage extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
       ),
-      home: Scaffold(
+      home: const Scaffold(
         body: Center(
           child: Text(
             'Algo deu errado, tente novamente mais tarde',

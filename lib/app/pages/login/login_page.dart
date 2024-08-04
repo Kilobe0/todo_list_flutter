@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_list_flutter/app/pages/login/login_controller.dart';
+import 'package:todo_list_flutter/app/services/send_email_service.dart';
 import 'package:todo_list_flutter/app/widgets/main_text_field.dart';
 
 class LoginPage extends StatelessWidget {
@@ -65,6 +66,37 @@ class LoginPage extends StatelessWidget {
                       isPassword: true,
                     ),
                   ),
+                  const Gap(16.0),
+                  ValueListenableBuilder(
+                      valueListenable:
+                          LoginController.instance.showForgotPassword,
+                      builder: (context, value, child) {
+                        return value == true
+                            ? InkWell(
+                                onTap: () async {
+                                  await SendEmailService.sendCode(
+                                      code: 'teste',
+                                      email: 'murillo003@hotmail.com');
+                                },
+                                child: Card(
+                                  color: Material.of(context)
+                                      .color!
+                                      .withOpacity(0.5),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      'Esqueci minha senha',
+                                      style: TextStyle(
+                                        color: Colors.white.withOpacity(0.5),
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : const SizedBox();
+                      }),
                   const Gap(24.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

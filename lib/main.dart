@@ -6,6 +6,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:todo_list_flutter/app/pages/error/error_page.dart';
 import 'package:todo_list_flutter/app/services/shared_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:todo_list_flutter/app/services/supabase_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,14 +18,19 @@ Future<void> main() async {
     runApp(const ErrorPage());
   } else {
     await Supabase.initialize(
-      url: supabaseUrl!,
-      anonKey: supabaseKey!,
+      url: supabaseUrl,
+      anonKey: supabaseKey,
     );
-    await SharedService.instance
-        .initPrefs(); // Inicializa a instância de SharedPreferences
-    await MyAppController.instance.init(); // Inicializa o tema Dark ou Light
-    await UserController.instance
-        .init(); // Inicializa o usuário e carrega suas tarefas
-    runApp(const MyApp());
+    bool isDbAvailable = await SupabaseService.instance.isDbAvailable();
+    if (!isDbAvailable) {
+      runApp(const ErrorPage());
+    } else {
+      await SharedService.instance
+          .initPrefs(); // Inicializa a instância de SharedPreferences
+      await MyAppController.instance.init(); // Inicializa o tema Dark ou Light
+      await UserController.instance
+          .init(); // Inicializa o usuário e carrega suas tarefas
+      runApp(const MyApp());
+    }
   }
 }

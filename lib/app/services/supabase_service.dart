@@ -5,6 +5,15 @@ class SupabaseService {
   static final SupabaseService instance = SupabaseService();
   final supabase = Supabase.instance.client;
 
+  Future<bool> isDbAvailable() async {
+    try {
+      await supabase.from('users').select();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   Future<void> userRegister(UserModel user) async {
     await supabase.from('users').insert(user.toMap());
   }
@@ -48,6 +57,8 @@ class SupabaseService {
   }
 
   Future<void> updateUserImage(String id, String imageBinary) async {
-    await supabase.from('users').update({'imageBinary': imageBinary}).eq('id', id);
+    await supabase
+        .from('users')
+        .update({'imageBinary': imageBinary}).eq('id', id);
   }
 }
