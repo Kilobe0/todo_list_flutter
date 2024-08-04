@@ -84,7 +84,7 @@ class TaskVisualizer extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(8)),
             ),
             child: Text(
-              '${DateOperations.instance.formatDateBr(task.date)} - ${DateOperations.instance.calculateDaysUntil(task.date)} dias até',
+              '${DateOperations.instance.formatDateBr(task.date)} - ${DateOperations.instance.calculateDaysUntil(task.date)} dias restantes',
               style: const TextStyle(
                 fontSize: 16,
               ),
@@ -110,7 +110,7 @@ class TaskVisualizer extends StatelessWidget {
             ),
             alignment: Alignment.topLeft,
             child: Text(
-              task.isDone ? 'Concluída' : 'Pendente :(',
+              task.isDone ? 'Concluída :)' : 'Pendente :O',
               style: const TextStyle(
                 fontSize: 16,
               ),
