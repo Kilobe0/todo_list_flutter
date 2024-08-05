@@ -73,10 +73,8 @@ class LoginPage extends StatelessWidget {
                       builder: (context, value, child) {
                         return value == true
                             ? InkWell(
-                                onTap: () async {
-                                  await SendEmailService.sendCode(
-                                      code: 'teste',
-                                      email: 'murillo003@hotmail.com');
+                                onTap: () {
+                                  
                                 },
                                 child: Card(
                                   color: Material.of(context)
