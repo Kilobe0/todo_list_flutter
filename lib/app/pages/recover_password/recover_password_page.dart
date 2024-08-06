@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:todo_list_flutter/app/pages/login/login_page.dart';
 import 'package:todo_list_flutter/app/pages/recover_password/recover_password_controller.dart';
 import 'package:todo_list_flutter/app/widgets/main_text_field.dart';
 import 'package:todo_list_flutter/app/widgets/second_text_field.dart';
@@ -23,8 +24,8 @@ class RecoverPasswordPage extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
                   colors: [
-                    Color.fromARGB(255, 75, 51, 104),
-                    Color.fromARGB(255, 128, 65, 151),
+                    Color(0xFF210A3E),
+                    Color(0xFF4F0A68),
                   ],
                 ),
                 borderRadius: BorderRadius.circular(20),
@@ -53,7 +54,7 @@ class RecoverPasswordPage extends StatelessWidget {
                     ),
                   ),
                   const Gap(16.0),
-                  SecondTextField(
+                  MainTextField(
                     label: 'E-mail',
                     controller:
                         RecoverPasswordController.instance.emailController,
@@ -65,15 +66,34 @@ class RecoverPasswordPage extends StatelessWidget {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.pop(context);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LoginPage(),
+                            ),
+                          );
                         },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          textStyle: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
                         child: const Text('Voltar'),
                       ),
                       const Gap(16.0),
                       ElevatedButton(
                         onPressed: () {
-                          // TODO
+                          RecoverPasswordController.instance.sendCode(context);
                         },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          textStyle: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
                         child: const Text('Enviar código'),
                       ),
                     ],

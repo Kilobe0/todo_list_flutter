@@ -9,14 +9,7 @@ import 'package:todo_list_flutter/app/services/shared_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:todo_list_flutter/app/services/supabase_service.dart';
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(MaterialApp(
-    home: RecoverPasswordPage(),
-  ));
-}
-
-/*Future<void> main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: "supabase.env");
   final String? supabaseUrl = dotenv.env['SUPABASE_URL'];
@@ -42,4 +35,3 @@ void main() {
     }
   }
 }
-*/

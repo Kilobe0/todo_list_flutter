@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_list_flutter/app/pages/login/login_controller.dart';
+import 'package:todo_list_flutter/app/pages/recover_password/recover_password_controller.dart';
+import 'package:todo_list_flutter/app/pages/recover_password/recover_password_page.dart';
 import 'package:todo_list_flutter/app/services/send_email_service.dart';
 import 'package:todo_list_flutter/app/widgets/main_text_field.dart';
 
@@ -74,7 +76,16 @@ class LoginPage extends StatelessWidget {
                         return value == true
                             ? InkWell(
                                 onTap: () {
-                                  
+                                  RecoverPasswordController
+                                          .instance.emailController =
+                                      LoginController.instance.emailController;
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const RecoverPasswordPage(),
+                                    ),
+                                  );
                                 },
                                 child: Card(
                                   color: Material.of(context)
