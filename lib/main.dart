@@ -4,7 +4,7 @@ import 'package:todo_list_flutter/app/my_app.dart';
 import 'package:todo_list_flutter/app/my_app_controller.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:todo_list_flutter/app/pages/error/error_page.dart';
-import 'package:todo_list_flutter/app/pages/recover_password/recover_password_page.dart';
+import 'package:todo_list_flutter/app/pages/recover_password/pages/recover_password_page.dart';
 import 'package:todo_list_flutter/app/services/shared_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:todo_list_flutter/app/services/supabase_service.dart';

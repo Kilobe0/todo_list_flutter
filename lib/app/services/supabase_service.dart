@@ -18,6 +18,12 @@ class SupabaseService {
     await supabase.from('users').insert(user.toMap());
   }
 
+  Future<void> updateUserPassword(String email, String password) async {
+    await supabase
+        .from('users')
+        .update({'password': password}).eq('email', email);
+  }
+
   Future<UserModel?> getUserByEmail(String email) async {
     final data = await supabase.from('users').select().eq('email', email);
     if (data.isEmpty) return null;

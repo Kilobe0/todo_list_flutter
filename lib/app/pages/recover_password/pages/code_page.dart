@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:todo_list_flutter/app/pages/login/login_page.dart';
-import 'package:todo_list_flutter/app/pages/recover_password/recover_password_controller.dart';
+import 'package:todo_list_flutter/app/pages/recover_password/controllers/code_controller.dart';
+import 'package:todo_list_flutter/app/pages/recover_password/controllers/recover_password_controller.dart';
+import 'package:todo_list_flutter/app/pages/recover_password/pages/recover_password_page.dart';
 import 'package:todo_list_flutter/app/widgets/main_text_field.dart';
-import 'package:todo_list_flutter/app/widgets/second_text_field.dart';
 
-class RecoverPasswordPage extends StatelessWidget {
-  const RecoverPasswordPage({super.key});
+class CodePage extends StatelessWidget {
+  const CodePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class RecoverPasswordPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text(
-                    'Recuperar Senha',
+                    'Informe o código',
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
@@ -46,18 +46,24 @@ class RecoverPasswordPage extends StatelessWidget {
                     ),
                   ),
                   const Gap(16.0),
-                  Text(
-                    'Insira o seu e-mail para recuperar sua senha',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white.withOpacity(0.7),
-                    ),
-                  ),
+                  ValueListenableBuilder(
+                      valueListenable:
+                          RecoverPasswordController.instance.timeToExpireCode,
+                      builder: (context, value, child) {
+                        return Text(
+                          value == 0
+                              ? 'Código expirado'
+                              : 'Verifique seu e-mail, código expira em $value segundos',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white.withOpacity(0.7),
+                          ),
+                        );
+                      }),
                   const Gap(16.0),
                   MainTextField(
-                    label: 'E-mail',
-                    controller:
-                        RecoverPasswordController.instance.emailController,
+                    label: 'Código',
+                    controller: CodeController.instance.codeController,
                     isPassword: false,
                   ),
                   const Gap(30.0),
@@ -69,7 +75,7 @@ class RecoverPasswordPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const LoginPage(),
+                              builder: (context) => const RecoverPasswordPage(),
                             ),
                           );
                         },
@@ -85,7 +91,8 @@ class RecoverPasswordPage extends StatelessWidget {
                       const Gap(16.0),
                       ElevatedButton(
                         onPressed: () {
-                          RecoverPasswordController.instance.sendCode(context);
+                          CodeController.instance
+                              .goToCreateNewPasswordPage(context);
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.transparent,
@@ -94,7 +101,7 @@ class RecoverPasswordPage extends StatelessWidget {
                             fontSize: 16,
                           ),
                         ),
-                        child: const Text('Enviar código'),
+                        child: const Text('Criar nova senha'),
                       ),
                     ],
                   ),

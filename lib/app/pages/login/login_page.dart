@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_list_flutter/app/pages/login/login_controller.dart';
-import 'package:todo_list_flutter/app/pages/recover_password/recover_password_controller.dart';
-import 'package:todo_list_flutter/app/pages/recover_password/recover_password_page.dart';
+import 'package:todo_list_flutter/app/pages/recover_password/controllers/recover_password_controller.dart';
+import 'package:todo_list_flutter/app/pages/recover_password/pages/recover_password_page.dart';
 import 'package:todo_list_flutter/app/services/send_email_service.dart';
 import 'package:todo_list_flutter/app/widgets/main_text_field.dart';
 
