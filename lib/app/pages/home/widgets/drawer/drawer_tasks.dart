@@ -8,8 +8,8 @@ import 'package:gap/gap.dart';
 
 import 'item_menu_drawer.dart';
 
-class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({super.key});
+class DrawerTasks extends StatelessWidget {
+  const DrawerTasks({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,15 @@ class DrawerWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Gap(50),
+          AppBar(
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                HomeController.instance.setCurrentDrawer(0);
+              },
+            ),
+            backgroundColor: Colors.transparent,
+          ),
           AnimatedBuilder(
             animation: UserController.instance,
             builder: (context, child) {
@@ -61,22 +69,14 @@ class DrawerWidget extends StatelessWidget {
           const Divider(),
           const Gap(10),
           ItemMenuDrawer(
-            icone: Icons.edit_document,
-            texto: 'Tarefas',
+            icone: Icons.delete_sweep_rounded,
+            texto: 'Excluir todas as Tarefas',
             cor: Colors.deepPurple,
             onTap: () {
-              HomeController.instance.setCurrentDrawer(2);
+              
             },
           ),
           const Gap(10),
-          ItemMenuDrawer(
-            icone: Icons.person,
-            texto: 'Perfil',
-            cor: Colors.deepPurple,
-            onTap: () {
-              HomeController.instance.setCurrentDrawer(1);
-            },
-          ),
         ],
       ),
     );

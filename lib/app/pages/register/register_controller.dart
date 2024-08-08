@@ -5,7 +5,7 @@ import 'package:todo_list_flutter/app/models/user_model.dart';
 import 'package:todo_list_flutter/app/services/shared_service.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:todo_list_flutter/app/services/supabase_service.dart';
-import 'package:todo_list_flutter/app/widgets/snackbar_message.dart';
+import 'package:todo_list_flutter/app/widgets/message_widgets.dart';
 import 'package:uuid/uuid.dart';
 
 const String kFillAllFieldsError = 'Preencha todos os campos';

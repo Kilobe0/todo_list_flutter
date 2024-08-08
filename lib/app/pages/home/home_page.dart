@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_list_flutter/app/controllers/user_controller.dart';
 import 'package:todo_list_flutter/app/controllers/user_tasks_controller.dart';
 import 'package:todo_list_flutter/app/pages/home/home_controller.dart';
+import 'package:todo_list_flutter/app/pages/home/widgets/drawer/drawer_tasks.dart';
 import 'package:todo_list_flutter/app/pages/login/login_page.dart';
 import 'package:todo_list_flutter/app/pages/home/widgets/drawer/drawer_profile.dart';
 
@@ -27,7 +28,6 @@ class HomePage extends StatelessWidget {
           .shrink(); // Retorna um widget vazio enquanto redireciona
     }
     return Scaffold(
-      
       appBar: header(context),
       drawer: AnimatedBuilder(
         animation: HomeController.instance,
@@ -37,6 +37,8 @@ class HomePage extends StatelessWidget {
               return const DrawerWidget();
             case 1:
               return const DrawerProfile();
+            case 2:
+              return const DrawerTasks();
             default:
               return const DrawerWidget();
           }
@@ -46,13 +48,12 @@ class HomePage extends StatelessWidget {
         child: SizedBox(
           width: 500,
           child: AnimatedBuilder(
-            animation: UserTasksController.instance,
-            builder: (context, child) {
-              return TaskList(
-                tasks: UserTasksController.instance.tasks,
-              );
-            }
-          ),
+              animation: UserTasksController.instance,
+              builder: (context, child) {
+                return TaskList(
+                  tasks: UserTasksController.instance.tasks,
+                );
+              }),
         ),
       ),
       floatingActionButton: const Padding(

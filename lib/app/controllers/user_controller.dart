@@ -43,12 +43,13 @@ class UserController extends ChangeNotifier {
   }
 
   Future<void> logout(BuildContext context) async {
+    context.mounted
+        ? await Navigator.of(context).pushReplacementNamed('/login')
+        : null;
     await SharedService.instance.prefs.remove(SharedKeys.userCredentials);
     UserController.instance.userLogged = null;
     UserTasksController.instance.tasks = [];
-    context.mounted
-        ? Navigator.of(context).pushReplacementNamed('/login')
-        : null;
+
     notifyListeners();
   }
 }

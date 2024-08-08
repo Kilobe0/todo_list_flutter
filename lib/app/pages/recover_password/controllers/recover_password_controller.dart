@@ -12,7 +12,7 @@ import 'dart:math';
 
 import 'package:todo_list_flutter/app/services/shared_service.dart';
 import 'package:todo_list_flutter/app/services/supabase_service.dart';
-import 'package:todo_list_flutter/app/widgets/snackbar_message.dart';
+import 'package:todo_list_flutter/app/widgets/message_widgets.dart';
 
 class RecoverPasswordController {
   static final RecoverPasswordController instance = RecoverPasswordController();

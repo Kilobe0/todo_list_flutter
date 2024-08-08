@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:todo_list_flutter/app/controllers/user_controller.dart';
 import 'package:todo_list_flutter/app/models/task_model.dart';
 import 'package:todo_list_flutter/app/services/supabase_service.dart';
-import 'package:todo_list_flutter/app/widgets/loading_dialog.dart';
-import 'package:todo_list_flutter/app/widgets/snackbar_message.dart';
+
+import 'package:todo_list_flutter/app/widgets/message_widgets.dart';
 
 class UserTasksController extends ChangeNotifier {
   static final UserTasksController instance = UserTasksController();
@@ -60,6 +60,16 @@ class UserTasksController extends ChangeNotifier {
   Future<void> deleteTask(BuildContext context, TaskModel task) async {
     await SupabaseService.instance.deleteTask(task.id);
     tasks.remove(task);
+    notifyListeners();
+  }
+
+  Future<void> deleteAllTasks(BuildContext context) async {
+    showLoadingDialog(context);
+    for (TaskModel task in tasks) {
+      await SupabaseService.instance.deleteTask(task.id);
+    }
+    tasks = [];
+    context.mounted ? Navigator.pop(context) : null;
     notifyListeners();
   }
 }

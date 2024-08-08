@@ -8,7 +8,7 @@ import 'package:todo_list_flutter/app/models/user_model.dart';
 import 'package:todo_list_flutter/app/services/shared_service.dart';
 import 'package:todo_list_flutter/app/services/supabase_service.dart';
 
-import '../../widgets/snackbar_message.dart';
+import '../../widgets/message_widgets.dart';
 
 class LoginController {
   static final LoginController instance = LoginController();
@@ -65,11 +65,14 @@ class LoginController {
   }
 
   Future<void> login(BuildContext context) async {
+    showLoadingDialog(context);
     if (!validateFields()) {
+      context.mounted ? Navigator.pop(context) : null;
       showSnackBarError(context, 'Preencha todos os campos');
       return;
     } else {
       if (await userExists() == false) {
+        context.mounted ? Navigator.pop(context) : null;
         context.mounted
             ? showSnackBarError(context, 'Email ou senha inválido')
             : null;
@@ -77,6 +80,7 @@ class LoginController {
       } else {
         await getUser();
         if (_user!.password != passwordController.text) {
+          context.mounted ? Navigator.pop(context) : null;
           context.mounted
               ? showSnackBarError(context, 'Email ou senha inválido')
               : null;
@@ -88,6 +92,7 @@ class LoginController {
           } catch (e) {
             print(e);
           }
+          context.mounted ? Navigator.pop(context) : null;
           context.mounted
               ? Navigator.of(context).pushReplacementNamed('/home')
               : null;

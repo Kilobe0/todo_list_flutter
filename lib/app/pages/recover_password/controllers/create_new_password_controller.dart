@@ -3,7 +3,7 @@ import 'package:todo_list_flutter/app/core/shared_keys.dart';
 import 'package:todo_list_flutter/app/pages/login/login_page.dart';
 import 'package:todo_list_flutter/app/services/shared_service.dart';
 import 'package:todo_list_flutter/app/services/supabase_service.dart';
-import 'package:todo_list_flutter/app/widgets/snackbar_message.dart';
+import 'package:todo_list_flutter/app/widgets/message_widgets.dart';
 
 class CreateNewPasswordController {
   static final CreateNewPasswordController instance =

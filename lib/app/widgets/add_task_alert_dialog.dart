@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_flutter/app/controllers/user_tasks_controller.dart';
 import 'package:todo_list_flutter/app/models/task_model.dart';
-import 'package:todo_list_flutter/app/widgets/snackbar_message.dart';
+import 'package:todo_list_flutter/app/widgets/message_widgets.dart';
 
 class AddTaskAlertDialog extends StatefulWidget {
   AddTaskAlertDialog({super.key, this.task});
