@@ -20,6 +20,11 @@ class UserTasksController extends ChangeNotifier {
     dateTime = DateTime.now();
   }
 
+  void addRestoredTask(TaskModel task) {
+    tasks.add(task);
+    notifyListeners();
+  }
+  
   Future<void> addTask(BuildContext context) async {
     if (taskNameController.text.isEmpty) {
       showSnackBarError(context, 'Preencha o nome da tarefa');

@@ -2,9 +2,12 @@ import 'dart:convert';
 
 import 'package:todo_list_flutter/app/controllers/user_controller.dart';
 import 'package:todo_list_flutter/app/controllers/user_tasks_controller.dart';
+import 'package:todo_list_flutter/app/models/task_model.dart';
 import 'package:todo_list_flutter/app/pages/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:todo_list_flutter/app/pages/home/widgets/drawer/controllers/restore_tasks_controller.dart';
+import 'package:todo_list_flutter/app/widgets/taskview/task_visualizer.dart';
 
 import 'item_menu_drawer.dart';
 
@@ -65,7 +68,7 @@ class DrawerWidget extends StatelessWidget {
             texto: 'Tarefas',
             cor: Colors.deepPurple,
             onTap: () {
-              HomeController.instance.setCurrentDrawer(2);
+              HomeController.instance.setCurrentDrawer(1);
             },
           ),
           const Gap(10),
@@ -74,7 +77,7 @@ class DrawerWidget extends StatelessWidget {
             texto: 'Perfil',
             cor: Colors.deepPurple,
             onTap: () {
-              HomeController.instance.setCurrentDrawer(1);
+              HomeController.instance.setCurrentDrawer(2);
             },
           ),
         ],

@@ -82,7 +82,9 @@ class DrawerTasks extends StatelessWidget {
             icone: Icons.restore_from_trash_rounded,
             texto: 'Restaurar tarefas',
             cor: Colors.deepPurple,
-            onTap: () async {},
+            onTap: () {
+              HomeController.instance.setCurrentDrawer(3);
+            },
           ),
         ],
       ),

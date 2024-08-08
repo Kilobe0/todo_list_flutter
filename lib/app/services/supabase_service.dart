@@ -35,14 +35,20 @@ class SupabaseService {
     return data;
   }
 
-  Future<void> addTask(Map<String, dynamic> task) async {
-    await supabase.from('tasks').insert({
-      'title': task['title'],
-      'description': task['description'],
-      'isDone': task['isDone'],
-      'date': task['date'],
-      'userId': task['userId'],
-    });
+  Future<String> addTask(Map<String, dynamic> task) async {
+    //Essa função adiciona uma nova tarefa ao banco de dados e retorna o id da tarefa adicionada.
+    var newTask = await supabase
+        .from('tasks')
+        .insert({
+          'title': task['title'],
+          'description': task['description'],
+          'isDone': task['isDone'],
+          'date': task['date'],
+          'userId': task['userId'],
+        })
+        .select()
+        .single();
+    return newTask['id'];
   }
 
   Future<void> deleteTask(String id) async {
