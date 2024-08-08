@@ -70,13 +70,20 @@ class DrawerTasks extends StatelessWidget {
           const Gap(10),
           ItemMenuDrawer(
             icone: Icons.delete_sweep_rounded,
-            texto: 'Excluir todas as Tarefas',
+            texto: 'Excluir tarefas',
             cor: Colors.deepPurple,
-            onTap: () {
-              
+            onTap: () async {
+              await UserTasksController.instance.deleteAllTasks(context);
             },
           ),
           const Gap(10),
+          //Botão de restaurar tarefas excluidas
+          ItemMenuDrawer(
+            icone: Icons.restore_from_trash_rounded,
+            texto: 'Restaurar tarefas',
+            cor: Colors.deepPurple,
+            onTap: () async {},
+          ),
         ],
       ),
     );

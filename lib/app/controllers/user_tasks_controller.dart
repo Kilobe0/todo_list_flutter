@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_flutter/app/controllers/user_controller.dart';
+import 'package:todo_list_flutter/app/core/shared_keys.dart';
 import 'package:todo_list_flutter/app/models/task_model.dart';
+import 'package:todo_list_flutter/app/services/shared_service.dart';
 import 'package:todo_list_flutter/app/services/supabase_service.dart';
 
 import 'package:todo_list_flutter/app/widgets/message_widgets.dart';
@@ -58,13 +60,46 @@ class UserTasksController extends ChangeNotifier {
   }
 
   Future<void> deleteTask(BuildContext context, TaskModel task) async {
+    List<String> aux =
+        SharedService.instance.prefs.getStringList(SharedKeys.tasksToRecover) ??
+            [];
+    aux.add(task.toJson());
+    await SharedService.instance.prefs
+        .setStringList(SharedKeys.tasksToRecover, aux);
     await SupabaseService.instance.deleteTask(task.id);
     tasks.remove(task);
     notifyListeners();
   }
 
   Future<void> deleteAllTasks(BuildContext context) async {
-    showLoadingDialog(context);
+    //confirmar se o usuário realmente quer excluir todas as tarefas
+    bool result = await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Excluir todas as tarefas'),
+          content: const Text(
+              'Tem certeza que deseja excluir permanentemente todas as suas tarefas?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, false);
+              },
+              child: const Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context, true);
+              },
+              child: const Text('Excluir'),
+            ),
+          ],
+        );
+      },
+    );
+    if (!result) return;
+
+    context.mounted ? showLoadingDialog(context) : null;
     for (TaskModel task in tasks) {
       await SupabaseService.instance.deleteTask(task.id);
     }

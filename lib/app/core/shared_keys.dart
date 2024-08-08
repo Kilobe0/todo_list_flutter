@@ -3,4 +3,5 @@ class SharedKeys {
   static String get userCredentials => 'userCredentials';
   static String get temporaryCode => 'temporaryCode';
   static String get emailCodeAssociated => 'emailCodeAssociated';
+  static String get tasksToRecover => 'tasksToRecover';
 }

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -20,9 +21,9 @@ class ItemMenuDrawer extends StatelessWidget {
       borderRadius: BorderRadius.circular(5),
       child: Container(
         width: 230,
-        height: 40,
+        height: 50,
         alignment: Alignment.center,
-        padding: const EdgeInsets.symmetric(horizontal: 50),
+        padding: const EdgeInsets.symmetric(horizontal: 30),
         decoration: ShapeDecoration(
             color: cor,
             shape: RoundedRectangleBorder(
@@ -41,14 +42,17 @@ class ItemMenuDrawer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              texto,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontFamily: 'Montserrat',
-                fontWeight: FontWeight.w700,
-                height: 0,
+            Flexible(
+              child: AutoSizeText(
+                texto,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w700,
+                  height: 0,
+                ),
+                maxLines: 1,
               ),
             ),
             const Gap(20),
