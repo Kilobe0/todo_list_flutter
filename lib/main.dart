@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list_flutter/app/controllers/finished_tasks_controller.dart';
 import 'package:todo_list_flutter/app/controllers/user_controller.dart';
 import 'package:todo_list_flutter/app/my_app.dart';
 import 'package:todo_list_flutter/app/my_app_controller.dart';
@@ -8,6 +9,7 @@ import 'package:todo_list_flutter/app/pages/recover_password/pages/recover_passw
 import 'package:todo_list_flutter/app/services/shared_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:todo_list_flutter/app/services/supabase_service.dart';
+import 'package:todo_list_flutter/app/services/tasks_timer_check.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +33,9 @@ Future<void> main() async {
       await MyAppController.instance.init(); // Inicializa o tema Dark ou Light
       await UserController.instance
           .init(); // Inicializa o usuário e carrega suas tarefas
+      FinishedTasksController.instance.refreshFinishedTasks();
+      TasksTimerCheck.instance.startDailyCheckTimer();
+      print(FinishedTasksController.instance.finishedTasks);
       runApp(const MyApp());
     }
   }

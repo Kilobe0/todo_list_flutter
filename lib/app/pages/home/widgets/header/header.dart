@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:todo_list_flutter/app/controllers/finished_tasks_controller.dart';
 import 'package:todo_list_flutter/app/controllers/user_controller.dart';
+import 'package:todo_list_flutter/app/pages/home/widgets/header/notification_icon.dart';
 
 AppBar header(context) {
   return AppBar(
@@ -49,14 +50,11 @@ AppBar header(context) {
                 fontFamily: 'Montserrat', fontWeight: FontWeight.bold),
           ),
           AnimatedBuilder(
-              animation: FinishedTasksController.instance,
-              builder: (context, child) {
-                return Container();
-
-                /*NotificationIcon(
-                  notifications: FinishedTasksController.instance.finishedTasks,
-                );*/
-              }),
+            animation: FinishedTasksController.instance,
+            builder: (context, child) {
+              return NotificationIcon();
+            },
+          ),
         ],
       ),
     ),
