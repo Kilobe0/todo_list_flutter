@@ -35,7 +35,6 @@ Future<void> main() async {
           .init(); // Inicializa o usuário e carrega suas tarefas
       FinishedTasksController.instance.refreshFinishedTasks();
       TasksTimerCheck.instance.startDailyCheckTimer();
-      print(FinishedTasksController.instance.finishedTasks);
       runApp(const MyApp());
     }
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_flutter/app/controllers/finished_tasks_controller.dart';
+import 'package:todo_list_flutter/app/models/finished_taks_model.dart';
 import 'package:todo_list_flutter/app/widgets/taskview/task_listtile_on_notifications.dart';
 
 import '../../../../models/task_model.dart';
@@ -12,6 +13,9 @@ class NotificationIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
+      onOpened: () {
+        FinishedTasksController.instance.notificationsOpened();
+      },
       itemBuilder: (context) {
         return List<PopupMenuEntry<int>>.generate(
           FinishedTasksController.instance.finishedTasks.length,
@@ -24,39 +28,42 @@ class NotificationIcon extends StatelessWidget {
         );
       },
       offset: const Offset(0, 30),
-      icon: SizedBox(
-        width: 22,
-        height: 25,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            const Icon(
-              Icons.notifications,
-              size: 22,
-            ),
-            Align(
-              alignment: Alignment.topRight,
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.red,
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: Text(
-                    FinishedTasksController.instance
-                        .getNotViewedTasks()
-                        .toString(),
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 8,
-                      height: 0,
-                    ),
-                  ),
-                ),
+      icon: Stack(
+        children: [
+          const Icon(
+            Icons.notifications,
+            size: 22,
+          ),
+          Positioned(
+            right: 0,
+            top: 0,
+            left: 10,
+            bottom: 6,
+            child: Container(
+              decoration: const BoxDecoration(
+                color: Colors.red,
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: ValueListenableBuilder(
+                    valueListenable:
+                        FinishedTasksController.instance.notViewedTasks,
+                    builder: (context, value, child) {
+                      return Text(
+                        FinishedTasksController.instance.notViewedTasks.value
+                            .toString(),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 8,
+                          fontWeight: FontWeight.bold,
+                          height: 0,
+                        ),
+                      );
+                    }),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -52,7 +52,8 @@ AppBar header(context) {
           AnimatedBuilder(
             animation: FinishedTasksController.instance,
             builder: (context, child) {
-              return NotificationIcon();
+              FinishedTasksController.instance.getNotViewedTasks();
+              return const NotificationIcon();
             },
           ),
         ],

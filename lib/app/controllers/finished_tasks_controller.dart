@@ -6,7 +6,7 @@ import 'package:todo_list_flutter/app/services/tasks_service.dart';
 class FinishedTasksController extends ChangeNotifier {
   static FinishedTasksController instance = FinishedTasksController();
   List<FinishedTaksModel> finishedTasks = [];
-
+  ValueNotifier<int> notViewedTasks = ValueNotifier(0);
   void removeFinishedTask(FinishedTaksModel finishedTask) {
     finishedTasks.remove(finishedTask);
     notifyListeners();
@@ -17,13 +17,18 @@ class FinishedTasksController extends ChangeNotifier {
     notifyListeners();
   }
 
-  int getNotViewedTasks() {
-    int notViewedTasks = 0;
+  void getNotViewedTasks() {
     for (FinishedTaksModel task in finishedTasks) {
-      if (!task.alreadyViewed!) {
-        notViewedTasks++;
+      if (!task.alreadyViewed) {
+        notViewedTasks.value++;
       }
     }
-    return notViewedTasks;
+  }
+
+  void notificationsOpened() {
+    for (FinishedTaksModel task in finishedTasks) {
+      task.alreadyViewed = true;
+    }
+    notViewedTasks.value = 0;
   }
 }
